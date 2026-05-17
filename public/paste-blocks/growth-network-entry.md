@@ -102,7 +102,7 @@ Never list, send, spend, accept, publish, register a wallet, or release funds wi
 
 ## Bloom MCP Tool Surface
 
-These are the mock tools the demo exposes as the credible agent-native layer. They can be implemented as a real MCP server later without changing the user-facing prompt.
+These are the public-safe tools exposed by the local Bloom MCP server in this demo.
 
 ```json
 [
