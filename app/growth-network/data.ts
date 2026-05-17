@@ -63,8 +63,8 @@ export const settlementFlow = [
     description: 'Builder and creator review the package, claims, price, proof checklist, and publish timing before anything is sent or paid.',
   },
   {
-    label: 'Human settlement',
-    description: 'The MVP assumes settlement happens outside the agent. The agent prepares the checklist; humans approve release.',
+    label: 'Policy wallet lane',
+    description: 'For a live demo, Bloom can prepare a Privy wallet action with caps, approved recipients, and an explicit human approve button.',
   },
   {
     label: 'Reputation update',
@@ -73,9 +73,70 @@ export const settlementFlow = [
 ];
 
 export const walletGuidance = {
-  mvp: 'No wallet is required for this public demo.',
+  mvp: 'Wallets are optional execution rails, not the core matching thesis.',
   future:
-    'A Privy agentic wallet can be optional later, but it should be user-created and human-authorized. The agent may prepare settlement details, never autonomously register, spend, or release funds.',
+    'The public-safe demo can show a Privy agentic wallet packet plus x402 or MPP settlement rail, with capped amount, approved recipient, proof checklist, and explicit human authorization.',
+};
+
+export const mcpTools = [
+  {
+    name: 'list_projects',
+    description: 'Returns public project cards with website, category, launch need, audience, budget, and proof rules.',
+  },
+  {
+    name: 'list_creators',
+    description: 'Returns creator capability cards with channels, formats, proof, quality signals, taste, and price range.',
+  },
+  {
+    name: 'score_match',
+    description: 'Compares one builder brief against creator cards across audience, taste, proof, quality, budget, and constraints.',
+  },
+  {
+    name: 'create_match_packet',
+    description: 'Drafts the suggested collaboration package, mission, proof checklist, and next message for each agent.',
+  },
+  {
+    name: 'prepare_settlement_packet',
+    description: 'Prepares a human-approved settlement packet for manual invoice, Privy wallet, x402, or MPP rails.',
+  },
+];
+
+export const protocolLayers = [
+  {
+    label: 'Markdown + HTML',
+    status: 'Live MVP',
+    description: 'Any Codex-style agent can read the entry prompt and inspect public listings without installing anything.',
+  },
+  {
+    label: 'Bloom MCP',
+    status: 'Hackathon demo layer',
+    description: 'Agents use Bloom tools to list projects, list creators, score fit, create match packets, and prepare settlement packets.',
+  },
+  {
+    label: 'A2A',
+    status: 'Network upgrade',
+    description: 'Builder and creator agents publish agent cards, then negotiate availability, claims, proof, and mission updates directly.',
+  },
+];
+
+export const settlementPacket = {
+  rail: 'Privy policy wallet + x402 or MPP rail',
+  amount: '0.01 USDC proof-of-settlement demo, not full creator payout',
+  recipient: 'Matched creator/channel wallet alias: DevRel Fieldnotes',
+  policy: [
+    'Human approval required',
+    'Capped demo amount',
+    'Approved recipient only',
+    'Proof checklist attached',
+    'No autonomous fund release',
+  ],
+  lifecycle: [
+    'Agent prepares settlement packet',
+    'Builder approves claim-safe mission',
+    'Creator accepts format and proof rules',
+    'Human authorizes wallet or payment rail',
+    'Bloom records proof and quality outcome',
+  ],
 };
 
 export const projectDirectory: ProjectBrief[] = [
@@ -238,6 +299,8 @@ export const demoProfiles = {
     matchReason: 'Technical trust, proof discipline, and educational style fit Signal Garden’s launch need.',
     settlementStatus: 'Human approval required before payment or fund release',
     settlementRule: 'Release only after proof checklist is accepted by the builder.',
+    protocolLayer: 'Markdown entry + Bloom MCP match request now; A2A agent card later.',
+    walletPolicy: 'Privy wallet optional; capped demo settlement only after builder approval.',
     nextAgentAction: 'Approve match request JSON before sending or spending anything.',
   },
   creator: {
@@ -257,6 +320,8 @@ export const demoProfiles = {
     matchReason: 'AI visibility category, proof-first claims, and DevRel audience fit the channel.',
     settlementStatus: 'Human approval required before accepting a deal',
     settlementRule: 'Creator keeps control of channel, format, proof delivery, and final acceptance.',
+    protocolLayer: 'Creator capability card + Bloom MCP listing now; A2A agent card later.',
+    walletPolicy: 'x402 or MPP receipt allowed only for symbolic proof payment after creator approval.',
     nextAgentAction: 'Approve capability card before listing or accepting any deal.',
   },
 };

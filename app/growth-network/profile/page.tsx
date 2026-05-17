@@ -93,6 +93,14 @@ function ProfilePanel({ profile }: { profile: DemoProfile }) {
             <dd>{profile.proofRules.join(', ')}</dd>
           </div>
           <div>
+            <dt>Protocol layer</dt>
+            <dd>{profile.protocolLayer}</dd>
+          </div>
+          <div>
+            <dt>Wallet policy</dt>
+            <dd>{profile.walletPolicy}</dd>
+          </div>
+          <div>
             <dt>Constraints</dt>
             <dd>{profile.constraints.join(', ')}</dd>
           </div>

@@ -476,6 +476,74 @@
   color: #655766;
 }
 
+.protocolStack {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.protocolStack article,
+.mcpConsole,
+.settlementPacket {
+  border-top: 1px solid rgba(61, 39, 70, 0.18);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.protocolStack article {
+  padding: 18px;
+}
+
+.protocolStack span,
+.mcpConsole dt,
+.settlementPacket span {
+  display: block;
+  color: #7b5b21;
+  font: 700 10px/1.2 var(--font-jetbrains-mono), monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.protocolStack h3,
+.mcpConsole h3,
+.settlementPacket h3 {
+  margin: 8px 0 10px;
+  font-family: var(--font-dm-serif-display), serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.protocolStack p,
+.mcpConsole dd,
+.settlementPacket p,
+.settlementPacket li {
+  margin: 0;
+  color: #655766;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.mcpConsole {
+  margin-top: 14px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.42fr) minmax(0, 1fr);
+  gap: 24px;
+}
+
+.mcpConsole dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 18px;
+  margin: 0;
+}
+
+.mcpConsole dd {
+  margin-top: 5px;
+}
+
 .settlementSection {
   padding: clamp(3rem, 7vw, 5rem) 0 2rem;
 }
@@ -535,6 +603,20 @@
   margin: 8px 0 0;
   color: #655766;
   line-height: 1.55;
+}
+
+.settlementPacket {
+  margin-top: 14px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: minmax(240px, 0.8fr) minmax(220px, 0.6fr) minmax(240px, 0.7fr);
+  gap: 22px;
+}
+
+.settlementPacket ul,
+.settlementPacket ol {
+  margin: 10px 0 0;
+  padding-left: 18px;
 }
 
 .directory {
@@ -853,7 +935,10 @@
   .benefitGrid,
   .qualityGrid,
   .handoffGrid,
+  .protocolStack,
+  .mcpConsole,
   .settlementGrid,
+  .settlementPacket,
   .matchSection {
     grid-template-columns: 1fr;
   }
@@ -945,6 +1030,10 @@
   }
 
   .rowMain dl {
+    grid-template-columns: 1fr;
+  }
+
+  .mcpConsole dl {
     grid-template-columns: 1fr;
   }
 

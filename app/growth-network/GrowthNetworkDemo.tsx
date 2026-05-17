@@ -3,7 +3,16 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import styles from './GrowthNetworkDemo.module.css';
-import { creatorDirectory, creatorQualityRubric, projectDirectory, settlementFlow, walletGuidance } from './data';
+import {
+  creatorDirectory,
+  creatorQualityRubric,
+  mcpTools,
+  projectDirectory,
+  protocolLayers,
+  settlementFlow,
+  settlementPacket,
+  walletGuidance,
+} from './data';
 
 type TabId = 'entry' | 'projects' | 'creators';
 
@@ -25,6 +34,7 @@ If the user is a builder, collect or confirm:
 - forbidden claims
 - preferred channels
 - budget range
+- settlement preference: manual invoice, human-approved Privy wallet, x402, MPP, or undecided
 - proof required
 - preferred creator style
 - examples of creator posts they like
@@ -42,7 +52,8 @@ Step 2: Capture taste and channel preference
 
 Step 3: Prepare Bloom match request
 - Output a structured match request JSON.
-- Ask the builder for approval before sending or spending anything.
+- Include preferred settlement rail and whether a Privy wallet/x402/MPP packet is allowed.
+- Ask the builder for approval before sending, listing, registering a wallet, or spending anything.
 
 If the user is a creator/channel, collect or confirm:
 - creator/channel name
@@ -59,6 +70,7 @@ If the user is a creator/channel, collect or confirm:
 - examples of products they would promote even at a lower price
 - deal preference: paid only, lower price for high-potential products, bundle deal, rev-share optional
 - proof they can provide: URL, screenshot, timestamp, post ID, archive link
+- settlement preference: manual invoice, human-approved Privy wallet, x402, MPP, or undecided
 
 Then respond in clean numbered steps only:
 
@@ -70,9 +82,19 @@ Step 2: Package offerings and preferences
 
 Step 3: Register capability card
 - Output a structured creator capability JSON.
-- Ask the creator for approval before listing or accepting any deal.
+- Include settlement capability and approval constraints.
+- Ask the creator for approval before listing, registering a wallet, accepting payment, or accepting any deal.
 
-If the user is both, complete the builder steps first, then the creator steps. Never list, send, spend, accept, or publish without explicit approval.`;
+If the user is both, complete the builder steps first, then the creator steps.
+
+If Bloom MCP tools are available, use them only after approval:
+1. list_projects
+2. list_creators
+3. score_match
+4. create_match_packet
+5. prepare_settlement_packet
+
+Never list, send, spend, accept, publish, register a wallet, or release funds without explicit approval.`;
 
 const builderBenefits = [
   'A structured launch brief your agent can reuse',
@@ -88,20 +110,20 @@ const creatorBenefits = [
 
 const agentHandoffSteps = [
   {
-    title: 'Public entry prompt',
+    title: 'Markdown entry',
     body: 'The user gives their agent the Bloom markdown. The agent asks whether they are a builder, creator/channel, or both.',
   },
   {
-    title: 'Structured profile card',
+    title: 'Bloom MCP',
+    body: 'The agent can call list_projects, list_creators, score_match, create_match_packet, and prepare_settlement_packet.',
+  },
+  {
+    title: 'Profile card',
     body: 'The agent turns answers into a builder brief or creator capability card with approval gates.',
   },
   {
-    title: 'Agent-readable directory',
-    body: 'Bloom exposes public-safe project and creator cards in HTML plus JSON-LD, so any agent can inspect them.',
-  },
-  {
-    title: 'Match handoff',
-    body: 'The agent compares fit, quality, taste, proof, and constraints, then drafts the next message. No MCP is required for the MVP.',
+    title: 'A2A later',
+    body: 'When builders and creators run live agents, A2A agent cards can let them negotiate availability, proof, and mission updates.',
   },
 ];
 
@@ -126,6 +148,10 @@ const mockMatch = {
     'Approve the match request JSON, confirm forbidden claims, and send one product screenshot plus one best-user quote.',
   creatorNext:
     'Approve the capability card, confirm format and price, and share one sample technical note with proof.',
+  protocolPath:
+    'MVP: markdown and public HTML. Demo layer: Bloom MCP tool calls. Future: A2A agent cards for live builder and creator agents.',
+  settlement:
+    'Prepare a human-approved settlement packet: Privy policy wallet, x402, or MPP rail; 0.01 USDC proof payment; capped recipient; no autonomous release.',
 };
 
 function copyText(text: string) {
@@ -183,8 +209,8 @@ export default function GrowthNetworkDemo() {
             </div>
             <div className={styles.consoleBody}>
               <p>1. Choose builder or creator.</p>
-              <p>2. Let the agent collect structured context.</p>
-              <p>3. Approve before listing, sending, or spending.</p>
+              <p>2. Let Bloom MCP score fit when approved.</p>
+              <p>3. Prepare match and settlement packets.</p>
             </div>
             <div className={styles.runtimeLine}>
               Codex first-class. Also compatible with Claude Code, Cursor, Hermes, OpenClaw, and markdown-reading agents.
@@ -244,10 +270,11 @@ export default function GrowthNetworkDemo() {
       <section className={styles.handoffSection} aria-labelledby="handoff-title">
         <div className={styles.sectionHeader}>
           <p className={styles.kicker}>Agent Handoff</p>
-          <h2 id="handoff-title">How one agent finds the other side.</h2>
+          <h2 id="handoff-title">MCP makes matching credible now. A2A makes agents find agents later.</h2>
           <p>
-            The MVP uses a markdown prompt, public directory pages, profile cards, and mock match JSON.
-            Bloom MCP is a future upgrade, not a dependency for this demo.
+            The MVP stays runnable through markdown and public HTML. Bloom MCP is the hackathon tool layer
+            an agent can call to inspect listings, score fit, and prepare packets. A2A is the future layer
+            for live builder and creator agents to talk to each other.
           </p>
         </div>
         <div className={styles.handoffGrid}>
@@ -258,6 +285,29 @@ export default function GrowthNetworkDemo() {
             </article>
           ))}
         </div>
+        <div className={styles.protocolStack}>
+          {protocolLayers.map((layer) => (
+            <article key={layer.label}>
+              <span>{layer.status}</span>
+              <h3>{layer.label}</h3>
+              <p>{layer.description}</p>
+            </article>
+          ))}
+        </div>
+        <div className={styles.mcpConsole} aria-label="Bloom MCP tool surface">
+          <div>
+            <p className={styles.kicker}>Bloom MCP Tool Surface</p>
+            <h3>Tools an agent can call</h3>
+          </div>
+          <dl>
+            {mcpTools.map((tool) => (
+              <div key={tool.name}>
+                <dt>{tool.name}</dt>
+                <dd>{tool.description}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </section>
 
       <section className={styles.settlementSection} aria-labelledby="settlement-title">
@@ -265,8 +315,8 @@ export default function GrowthNetworkDemo() {
           <p className={styles.kicker}>Settlement Layer</p>
           <h2 id="settlement-title">Quality decides eligibility. Humans approve settlement.</h2>
           <p>
-            Agents can prepare the deal packet and proof checklist, but the final transaction is still
-            human-approved. The demo does not require a wallet or payment integration.
+            Agents prepare the deal packet, proof checklist, and settlement packet. For the hackathon,
+            Bloom can show a Privy policy wallet plus x402 or MPP rail, but release stays human-approved.
           </p>
         </div>
         <div className={styles.settlementGrid}>
@@ -280,6 +330,22 @@ export default function GrowthNetworkDemo() {
         <div className={styles.walletNote}>
           <span>Wallet stance</span>
           <p>{walletGuidance.mvp} {walletGuidance.future}</p>
+        </div>
+        <div className={styles.settlementPacket}>
+          <div>
+            <p className={styles.kicker}>Prepared Settlement Packet</p>
+            <h3>{settlementPacket.rail}</h3>
+            <p>{settlementPacket.amount}</p>
+            <p>{settlementPacket.recipient}</p>
+          </div>
+          <div>
+            <span>Policy controls</span>
+            <ul>{settlementPacket.policy.map((item) => <li key={item}>{item}</li>)}</ul>
+          </div>
+          <div>
+            <span>Lifecycle</span>
+            <ol>{settlementPacket.lifecycle.map((item) => <li key={item}>{item}</li>)}</ol>
+          </div>
         </div>
       </section>
 
@@ -482,6 +548,10 @@ export default function GrowthNetworkDemo() {
               <h4>Next messages</h4>
               <p><strong>Builder agent:</strong> {mockMatch.builderNext}</p>
               <p><strong>Creator agent:</strong> {mockMatch.creatorNext}</p>
+              <h4>Protocol path</h4>
+              <p>{mockMatch.protocolPath}</p>
+              <h4>Settlement packet</h4>
+              <p>{mockMatch.settlement}</p>
             </div>
           </article>
         ) : (

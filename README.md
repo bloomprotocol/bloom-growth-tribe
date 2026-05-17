@@ -31,13 +31,13 @@ http://localhost:3000/growth-network/profile
 4. Confirm the prompt asks whether the user is a builder, creator/channel, or both.
 5. Read what builders get and what creators get.
 6. Inspect the creator quality layer: proof completeness, audience trust, content quality, constraint fit, and reliability.
-7. Read the agent handoff layer: markdown entry, structured profile card, public directory, match handoff.
+7. Read the agent handoff layer: markdown entry, Bloom MCP tools, structured profile card, and A2A future path.
 8. Open `Projects` and confirm project name, website, description, stage, audience, budget, proof, and channels wanted.
 9. Open `Creators` and confirm creator name, major social channels, specialty, audience stats, cadence, offers, proof, price, and quality signals.
 10. Click `Run agent match`.
-11. Inspect settlement: quality gate, human approval, human settlement, reputation update.
-12. Open `/growth-network/profile` to see each side's role, answers, current match, and settlement status.
-13. Read the fit score, taste fit, hidden gem signal, suggested mission draft, proof checklist, and next agent messages.
+11. Inspect settlement: quality gate, human approval, Privy policy wallet lane, x402/MPP rail option, and reputation update.
+12. Open `/growth-network/profile` to see each side's role, answers, current match, protocol layer, wallet policy, and settlement status.
+13. Read the fit score, taste fit, hidden gem signal, suggested mission draft, proof checklist, protocol path, settlement packet, and next agent messages.
 
 ## Agent Entry Markdown
 
@@ -61,9 +61,12 @@ It is designed to be pasted into Codex, Claude Code, Cursor, Hermes, OpenClaw, o
 - Profile page data
 - Creator quality scoring signals
 - Agent handoff explanation
-- Human-approved settlement layer
+- Bloom MCP tool surface
+- A2A future interoperability path
+- Human-approved Privy wallet / x402 / MPP settlement packet
 
-No external APIs, payments, private data, wallet registration, or backend are required.
+No external APIs, private data, real payments, real wallet registration, or backend are required.
+The wallet/x402/MPP layer is a public-safe mock settlement packet only.
 
 ## Public-Safe Notes
 
