@@ -1,0 +1,27 @@
+:root {
+  color-scheme: light;
+  --cream: #f5f1e8;
+  --ink: #211625;
+  --plum: #25172d;
+  --gold: #d7c06f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
