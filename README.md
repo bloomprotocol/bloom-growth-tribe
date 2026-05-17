@@ -35,8 +35,9 @@ http://localhost:3000/growth-network/profile
 8. Open `Projects` and confirm project name, website, description, stage, audience, budget, proof, and channels wanted.
 9. Open `Creators` and confirm creator name, major social channels, specialty, audience stats, cadence, offers, proof, price, and quality signals.
 10. Click `Run agent match`.
-11. Open `/growth-network/profile` to see each side's role, answers, and current match.
-12. Read the fit score, taste fit, hidden gem signal, suggested mission draft, proof checklist, and next agent messages.
+11. Inspect settlement: quality gate, human approval, human settlement, reputation update.
+12. Open `/growth-network/profile` to see each side's role, answers, current match, and settlement status.
+13. Read the fit score, taste fit, hidden gem signal, suggested mission draft, proof checklist, and next agent messages.
 
 ## Agent Entry Markdown
 
@@ -60,8 +61,9 @@ It is designed to be pasted into Codex, Claude Code, Cursor, Hermes, OpenClaw, o
 - Profile page data
 - Creator quality scoring signals
 - Agent handoff explanation
+- Human-approved settlement layer
 
-No external APIs, payments, private data, or backend are required.
+No external APIs, payments, private data, wallet registration, or backend are required.
 
 ## Public-Safe Notes
 

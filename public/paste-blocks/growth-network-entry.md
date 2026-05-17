@@ -45,6 +45,7 @@ Step 2: Capture taste and channel preference
 Step 3: Prepare Bloom match request
 - Output a structured match request JSON.
 - Ask the builder for approval before sending or spending anything.
+- Include settlement preference, but remind the builder that final settlement is human-approved.
 
 If the user is a creator/channel, collect or confirm:
 - creator/channel name
@@ -62,6 +63,7 @@ If the user is a creator/channel, collect or confirm:
 - deal preference: paid only, lower price for high-potential products, bundle deal, rev-share optional
 - proof they can provide: URL, screenshot, timestamp, post ID, archive link
 - quality signals they can provide: sample work URL, proof completeness, audience trust, content quality, constraint fit, reliability signal
+- settlement preference: invoice/manual settlement, human-approved wallet flow, or other approved method
 
 Then respond in clean numbered steps only:
 
@@ -75,6 +77,7 @@ Step 3: Register capability card
 - Output a structured creator capability JSON.
 - Include creator quality signals for proof completeness, audience trust, content quality, constraint fit, and reliability.
 - Ask the creator for approval before listing or accepting any deal.
+- Do not register a wallet, accept funds, or release funds without explicit human approval.
 
 If the user is both, complete the builder steps first, then the creator steps. Never list, send, spend, accept, or publish without explicit approval.
 ```
@@ -94,6 +97,7 @@ If the user is both, complete the builder steps first, then the creator steps. N
   "preferred_channels": ["newsletter", "blog", "technical community"],
   "budget_range": "$500-$900",
   "proof_required": ["public URL", "timestamp", "analytics screenshot if available"],
+  "settlement_preference": "manual invoice or human-approved wallet flow",
   "preferred_creator_style": ["educational", "operator credibility", "high-quality writing"],
   "liked_examples": ["clear teardown posts", "practical DevRel essays"],
   "tone_preference": "educational",
@@ -124,6 +128,7 @@ If the user is both, complete the builder steps first, then the creator steps. N
     "constraint_fit": "Avoids financial promises and unsupported claims",
     "reliability_signal": "Can confirm format, timeline, and proof delivery before launch"
   },
+  "settlement_preference": "manual invoice or human-approved wallet flow",
   "deal_preference": "lower price for high-potential products",
   "proof_available": ["permalink", "community screenshot", "timestamp"]
 }
@@ -139,6 +144,7 @@ After the user approves, the agent can show a public-safe profile summary:
   "display_name": "Signal Garden or DevRel Fieldnotes",
   "role": "builder_or_creator",
   "matched_with": "Creator/channel or builder/project name",
+  "settlement_status": "human approval required before payment or release",
   "approved_public_summary": "Short public description",
   "matching_inputs": {
     "audience": [],
@@ -152,4 +158,8 @@ After the user approves, the agent can show a public-safe profile summary:
 
 ## Approval Rule
 
-The agent should never list a creator, send a match request, accept a deal, spend budget, or publish a claim without explicit human approval.
+The agent should never list a creator, send a match request, accept a deal, register a wallet, spend budget, release funds, or publish a claim without explicit human approval.
+
+## Wallet Rule
+
+No wallet is required for the MVP. A Privy agentic wallet can be optional in a later version, but it must be user-created and human-authorized. The agent may prepare settlement details and proof checklists; it must not autonomously register wallets, spend, or release funds.

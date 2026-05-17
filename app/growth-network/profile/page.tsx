@@ -100,6 +100,11 @@ function ProfileCard({ profile }: { profile: DemoProfile }) {
         <span>Next agent action</span>
         <p>{profile.nextAgentAction}</p>
       </div>
+      <div className={styles.settlementBox}>
+        <span>Settlement</span>
+        <strong>{profile.settlementStatus}</strong>
+        <p>{profile.settlementRule}</p>
+      </div>
     </article>
   );
 }

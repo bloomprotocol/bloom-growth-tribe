@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import styles from './GrowthNetworkDemo.module.css';
-import { creatorDirectory, creatorQualityRubric, projectDirectory } from './data';
+import { creatorDirectory, creatorQualityRubric, projectDirectory, settlementFlow, walletGuidance } from './data';
 
 type TabId = 'entry' | 'projects' | 'creators';
 
@@ -257,6 +257,29 @@ export default function GrowthNetworkDemo() {
               <p>{step.body}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className={styles.settlementSection} aria-labelledby="settlement-title">
+        <div className={styles.sectionHeader}>
+          <p className={styles.kicker}>Settlement Layer</p>
+          <h2 id="settlement-title">Quality decides eligibility. Humans approve settlement.</h2>
+          <p>
+            Agents can prepare the deal packet and proof checklist, but the final transaction is still
+            human-approved. The demo does not require a wallet or payment integration.
+          </p>
+        </div>
+        <div className={styles.settlementGrid}>
+          {settlementFlow.map((step) => (
+            <article key={step.label}>
+              <h3>{step.label}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))}
+        </div>
+        <div className={styles.walletNote}>
+          <span>Wallet stance</span>
+          <p>{walletGuidance.mvp} {walletGuidance.future}</p>
         </div>
       </section>
 

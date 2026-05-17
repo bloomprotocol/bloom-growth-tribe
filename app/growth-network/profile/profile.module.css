@@ -184,17 +184,20 @@
   color: rgba(255, 248, 232, 0.84);
 }
 
-.nextAction {
+.nextAction,
+.settlementBox {
   margin-top: 24px;
   padding: 16px;
   background: rgba(37, 23, 45, 0.08);
 }
 
-.profileCard:nth-child(2) .nextAction {
+.profileCard:nth-child(2) .nextAction,
+.profileCard:nth-child(2) .settlementBox {
   background: rgba(255, 248, 232, 0.08);
 }
 
-.nextAction span {
+.nextAction span,
+.settlementBox span {
   display: block;
   color: #7b5b21;
   font: 700 10px/1.2 var(--font-jetbrains-mono), monospace;
@@ -202,7 +205,14 @@
   text-transform: uppercase;
 }
 
-.nextAction p {
+.settlementBox strong {
+  display: block;
+  margin-top: 8px;
+  line-height: 1.35;
+}
+
+.nextAction p,
+.settlementBox p {
   margin: 8px 0 0;
   line-height: 1.5;
 }

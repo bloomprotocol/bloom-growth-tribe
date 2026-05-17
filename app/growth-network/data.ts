@@ -53,6 +53,31 @@ export const creatorQualityRubric = [
   },
 ];
 
+export const settlementFlow = [
+  {
+    label: 'Quality gate',
+    description: 'The agent checks proof completeness, audience trust, content quality, constraints, and reliability before a deal is eligible.',
+  },
+  {
+    label: 'Human approval',
+    description: 'Builder and creator review the package, claims, price, proof checklist, and publish timing before anything is sent or paid.',
+  },
+  {
+    label: 'Human settlement',
+    description: 'The MVP assumes settlement happens outside the agent. The agent prepares the checklist; humans approve release.',
+  },
+  {
+    label: 'Reputation update',
+    description: 'After proof is delivered, Bloom can update quality signals so future matches prefer reliable creators.',
+  },
+];
+
+export const walletGuidance = {
+  mvp: 'No wallet is required for this public demo.',
+  future:
+    'A Privy agentic wallet can be optional later, but it should be user-created and human-authorized. The agent may prepare settlement details, never autonomously register, spend, or release funds.',
+};
+
 export const projectDirectory: ProjectBrief[] = [
   {
     name: 'Quiet Launch OS',
@@ -211,6 +236,8 @@ export const demoProfiles = {
     matchedWith: 'DevRel Fieldnotes',
     matchRoleLabel: 'Matched creator/channel',
     matchReason: 'Technical trust, proof discipline, and educational style fit Signal Garden’s launch need.',
+    settlementStatus: 'Human approval required before payment or fund release',
+    settlementRule: 'Release only after proof checklist is accepted by the builder.',
     nextAgentAction: 'Approve match request JSON before sending or spending anything.',
   },
   creator: {
@@ -228,6 +255,8 @@ export const demoProfiles = {
     matchedWith: 'Signal Garden',
     matchRoleLabel: 'Matched builder/project',
     matchReason: 'AI visibility category, proof-first claims, and DevRel audience fit the channel.',
+    settlementStatus: 'Human approval required before accepting a deal',
+    settlementRule: 'Creator keeps control of channel, format, proof delivery, and final acceptance.',
     nextAgentAction: 'Approve capability card before listing or accepting any deal.',
   },
 };
