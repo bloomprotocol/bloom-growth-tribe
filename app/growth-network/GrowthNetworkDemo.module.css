@@ -512,7 +512,7 @@
 
 .handoffGrid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -561,25 +561,12 @@
   color: #7b5b21;
 }
 
-.protocolStack {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 14px;
-}
-
-.protocolStack article,
 .mcpConsole,
 .settlementPacket {
   border-top: 1px solid rgba(61, 39, 70, 0.18);
   background: rgba(255, 255, 255, 0.5);
 }
 
-.protocolStack article {
-  padding: 18px;
-}
-
-.protocolStack span,
 .mcpConsole dt,
 .settlementPacket span {
   display: block;
@@ -589,7 +576,6 @@
   text-transform: uppercase;
 }
 
-.protocolStack h3,
 .mcpConsole h3,
 .settlementPacket h3 {
   margin: 8px 0 10px;
@@ -600,7 +586,6 @@
   letter-spacing: 0;
 }
 
-.protocolStack p,
 .mcpConsole dd,
 .settlementPacket p,
 .settlementPacket li {
@@ -627,6 +612,14 @@
 
 .mcpConsole dd {
   margin-top: 5px;
+}
+
+.consoleNote {
+  max-width: 260px;
+  margin: 12px 0 0;
+  color: #655766;
+  font-size: 13px;
+  line-height: 1.45;
 }
 
 .settlementSection {
@@ -1044,7 +1037,6 @@
   .benefitGrid,
   .qualityGrid,
   .handoffGrid,
-  .protocolStack,
   .mcpConsole,
   .settlementGrid,
   .settlementPacket,

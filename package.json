@@ -5,12 +5,16 @@
   "scripts": {
     "dev": "next dev -p 3000",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "mcp": "node mcp/bloom-growth-mcp.mjs",
+    "mcp:smoke": "node mcp/smoke-test.mjs"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "next": "^16.1.1",
     "react": "^19.2.1",
-    "react-dom": "^19.2.1"
+    "react-dom": "^19.2.1",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/node": "^20",

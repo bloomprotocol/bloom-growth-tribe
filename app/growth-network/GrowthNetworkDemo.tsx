@@ -9,7 +9,6 @@ import {
   creatorQualityRubric,
   mcpTools,
   projectDirectory,
-  protocolLayers,
   settlementFlow,
   settlementPacket,
   walletGuidance,
@@ -127,26 +126,21 @@ const impactItems = [
   },
 ];
 
-const agentHandoffSteps = [
+const mcpFlow = [
   {
-    eyebrow: 'Step 1',
-    title: 'Paste the entry prompt',
-    body: 'Codex or any agent asks if you are a builder, creator, or both.',
+    label: 'Builder agent',
+    title: 'Submits launch intent',
+    body: 'Project, audience, budget, claims, proof rules, and preferred creator style.',
   },
   {
-    eyebrow: 'Step 2',
-    title: 'Create a profile',
-    body: 'Answers become a builder brief or creator capability card.',
+    label: 'Bloom MCP',
+    title: 'Reads both sides',
+    body: 'Lists projects and creators, then scores taste, audience, quality, proof, and constraints.',
   },
   {
-    eyebrow: 'Step 3',
-    title: 'Score the fit',
-    body: 'Bloom compares audience, taste, proof, budget, and quality.',
-  },
-  {
-    eyebrow: 'Step 4',
-    title: 'Draft the mission',
-    body: 'Both sides get the match packet, next message, and proof checklist.',
+    label: 'Creator agent',
+    title: 'Publishes capability',
+    body: 'Channel, audience, accepted formats, price range, sample work, and credential checks.',
   },
 ];
 
@@ -346,34 +340,29 @@ export default function GrowthNetworkDemo() {
 
       <section className={styles.handoffSection} aria-labelledby="handoff-title">
         <div className={styles.sectionHeader}>
-          <p className={styles.kicker}>How Matching Works</p>
-          <h2 id="handoff-title">From prompt to growth mission.</h2>
+          <p className={styles.kicker}>Bloom MCP</p>
+          <h2 id="handoff-title">Agents find each other through Bloom.</h2>
           <p>
-            Builders and creators answer once. Agents package the context, score the fit, and draft the next move.
+            Builder agents and creator agents do not search the open web. They publish structured cards,
+            call Bloom MCP, and receive a scored match packet.
           </p>
         </div>
         <div className={styles.handoffGrid}>
-          {agentHandoffSteps.map((step) => (
-            <article key={step.title}>
-              <span>{step.eyebrow}</span>
-              <h3>{step.title}</h3>
-              <p>{step.body}</p>
-            </article>
-          ))}
-        </div>
-        <div className={styles.protocolStack}>
-          {protocolLayers.map((layer) => (
-            <article key={layer.label}>
-              <span>{layer.status}</span>
-              <h3>{layer.label}</h3>
-              <p>{layer.description}</p>
+          {mcpFlow.map((item) => (
+            <article key={item.label}>
+              <span>{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
             </article>
           ))}
         </div>
         <div className={styles.mcpConsole} aria-label="Bloom MCP tool surface">
           <div>
-            <p className={styles.kicker}>Agent Tools</p>
-            <h3>How scoring runs</h3>
+            <p className={styles.kicker}>MCP Calls</p>
+            <h3>Registry, scoring, packet.</h3>
+            <p className={styles.consoleNote}>
+              Public repo includes this server. Run <code>npm run mcp</code>.
+            </p>
           </div>
           <dl>
             {mcpTools.map((tool) => (

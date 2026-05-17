@@ -105,24 +105,6 @@ export const mcpTools = [
   },
 ];
 
-export const protocolLayers = [
-  {
-    label: 'Markdown + HTML',
-    status: 'Now',
-    description: 'Any Codex-style agent can read the prompt and listings.',
-  },
-  {
-    label: 'Bloom MCP',
-    status: 'Agent tools',
-    description: 'Agents can list, score, and create match packets.',
-  },
-  {
-    label: 'A2A',
-    status: 'Later',
-    description: 'Live agents can publish cards and negotiate directly.',
-  },
-];
-
 export const settlementPacket = {
   rail: 'Privy wallet + x402 or MPP',
   amount: '0.01 USDC proof payment for demo',

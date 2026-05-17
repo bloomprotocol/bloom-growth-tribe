@@ -60,6 +60,30 @@ After approval, it returns a dashboard profile object for `/growth-network/profi
 
 It is designed to be pasted into Codex, Claude Code, Cursor, Hermes, OpenClaw, or any agent that can read markdown. OpenClaw is compatible but not required.
 
+## Bloom MCP Server
+
+The public repo includes a small local MCP server for the demo matching layer.
+
+```bash
+npm run mcp
+```
+
+Smoke test the tools:
+
+```bash
+npm run mcp:smoke
+```
+
+Exposed tools:
+
+- `list_projects`: returns public builder project cards
+- `list_creators`: returns creator capability cards
+- `score_match`: scores one project against one creator
+- `create_match_packet`: returns the mission, proof checklist, risks, and next messages
+- `prepare_settlement_packet`: prepares a human-approved payment packet only
+
+The MCP server uses mock data only. It does not call external APIs, register wallets, send funds, or publish anything.
+
 ## What Is Mocked
 
 - Project directory cards
@@ -72,7 +96,7 @@ It is designed to be pasted into Codex, Claude Code, Cursor, Hermes, OpenClaw, o
 - Generated agent dashboard
 - Creator quality scoring signals
 - Agent handoff explanation
-- Bloom MCP tool surface
+- Bloom MCP tool surface and local MCP server
 - A2A future interoperability path
 - Human-approved Privy wallet / x402 / MPP settlement packet
 
@@ -81,4 +105,4 @@ The wallet/x402/MPP layer is a public-safe mock settlement packet only.
 
 ## Public-Safe Notes
 
-This repo intentionally excludes private strategy notes, payment roadmap, internal pricing, BD target lists, secrets, env files, wallet keys, and non-demo Bloom workspace files.
+This repo intentionally excludes private notes, internal pricing, BD target lists, secrets, env files, wallet keys, and non-demo Bloom workspace files.
