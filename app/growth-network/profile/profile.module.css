@@ -2,7 +2,7 @@
   min-height: 100vh;
   padding: 22px clamp(16px, 4vw, 56px) clamp(48px, 8vw, 96px);
   background:
-    linear-gradient(180deg, rgba(36, 22, 45, 0.7), rgba(245, 241, 232, 0.96) 52%),
+    linear-gradient(180deg, rgba(36, 22, 45, 0.72), rgba(245, 241, 232, 0.97) 46%),
     url('/growth-network/ralphthon-hero.png') center top / cover no-repeat fixed;
   color: #211625;
   font-family: var(--font-dm-sans), sans-serif;
@@ -10,12 +10,12 @@
 
 .nav {
   width: min(1120px, 100%);
-  margin: 0 auto;
   min-height: 58px;
+  margin: 0 auto;
   padding: 10px 14px;
   border: 1px solid rgba(255, 255, 255, 0.34);
   border-radius: 999px;
-  background: rgba(42, 28, 51, 0.26);
+  background: rgba(42, 28, 51, 0.28);
   backdrop-filter: blur(22px);
   display: flex;
   align-items: center;
@@ -36,14 +36,13 @@
 }
 
 .header,
-.profileGrid,
-.backendNote {
+.profileStack {
   width: min(1120px, 100%);
   margin-inline: auto;
 }
 
 .header {
-  padding: clamp(72px, 13vw, 150px) 0 clamp(36px, 6vw, 72px);
+  padding: clamp(68px, 12vw, 132px) 0 clamp(26px, 5vw, 54px);
   color: #fff8e8;
   text-shadow: 0 2px 28px rgba(22, 12, 27, 0.24);
 }
@@ -59,74 +58,113 @@
 }
 
 .header h1 {
-  max-width: 820px;
-  margin: 12px 0 18px;
+  max-width: 780px;
+  margin: 12px 0 0;
   font-family: var(--font-dm-serif-display), serif;
-  font-size: clamp(48px, 8vw, 96px);
+  font-size: clamp(46px, 7vw, 84px);
   font-weight: 400;
-  line-height: 0.92;
+  line-height: 0.94;
   letter-spacing: 0;
 }
 
-.header p:not(.kicker) {
-  max-width: 640px;
-  margin: 0;
-  color: rgba(255, 248, 232, 0.86);
-  font-size: 18px;
-  line-height: 1.5;
-}
-
-.profileGrid {
+.profileStack {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: 14px;
 }
 
-.profileCard {
-  padding: clamp(22px, 4vw, 36px);
+.profilePanel {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.64fr) minmax(360px, 1fr);
+  gap: clamp(18px, 3vw, 34px);
+  padding: clamp(18px, 3vw, 30px);
   border-top: 1px solid rgba(61, 39, 70, 0.16);
-  background: rgba(255, 248, 238, 0.86);
+  background: rgba(255, 248, 238, 0.9);
   backdrop-filter: blur(14px);
 }
 
-.profileCard:nth-child(2) {
-  margin-top: 40px;
+.profilePanel:nth-child(2) {
   background: #25172d;
   color: #fff8e8;
 }
 
-.profileCard h2,
-.backendNote h2 {
-  margin: 10px 0 12px;
-  font-family: var(--font-dm-serif-display), serif;
-  font-size: clamp(34px, 5vw, 58px);
-  font-weight: 400;
-  line-height: 0.98;
+.identity {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 22px;
 }
 
-.summary {
-  margin: 0 0 24px;
+.identity h2 {
+  margin: 10px 0 8px;
+  font-family: var(--font-dm-serif-display), serif;
+  font-size: clamp(38px, 5vw, 62px);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: 0;
+}
+
+.identity strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #32213a;
+  font-size: 16px;
+}
+
+.profilePanel:nth-child(2) .identity strong {
+  color: #fff8e8;
+}
+
+.identity p:not(.kicker) {
+  margin: 0;
   color: #655766;
   line-height: 1.55;
 }
 
-.profileCard:nth-child(2) .summary {
-  color: rgba(255, 248, 232, 0.8);
+.profilePanel:nth-child(2) .identity p:not(.kicker) {
+  color: rgba(255, 248, 232, 0.78);
 }
 
-.matchBox {
-  margin: 0 0 24px;
-  padding: 16px;
+.statusPill {
+  width: fit-content;
+  min-height: 36px;
+  padding: 11px 14px;
+  border-radius: 999px;
   background: rgba(37, 23, 45, 0.08);
+  color: #4b3154;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.profilePanel:nth-child(2) .statusPill {
+  background: rgba(255, 248, 232, 0.1);
+  color: #fff8e8;
+}
+
+.matchStrip {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.matchStrip div,
+.answerSection,
+.nextAction {
+  padding: 16px;
   border-top: 1px solid rgba(61, 39, 70, 0.14);
+  background: rgba(37, 23, 45, 0.06);
 }
 
-.profileCard:nth-child(2) .matchBox {
+.profilePanel:nth-child(2) .matchStrip div,
+.profilePanel:nth-child(2) .answerSection,
+.profilePanel:nth-child(2) .nextAction {
+  border-color: rgba(255, 248, 232, 0.14);
   background: rgba(255, 248, 232, 0.08);
-  border-color: rgba(255, 248, 232, 0.16);
 }
 
-.matchBox span {
+.matchStrip span,
+.nextAction span,
+.answerSection dt {
   display: block;
   color: #7b5b21;
   font: 700 10px/1.2 var(--font-jetbrains-mono), monospace;
@@ -134,106 +172,70 @@
   text-transform: uppercase;
 }
 
-.profileCard:nth-child(2) .matchBox span {
+.profilePanel:nth-child(2) .matchStrip span,
+.profilePanel:nth-child(2) .nextAction span,
+.profilePanel:nth-child(2) .answerSection dt {
   color: #d7c06f;
 }
 
-.matchBox strong {
+.matchStrip strong {
   display: block;
   margin-top: 8px;
   font-family: var(--font-dm-serif-display), serif;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 400;
   line-height: 1;
 }
 
-.matchBox p {
+.matchStrip p,
+.nextAction p {
   margin: 8px 0 0;
   color: #655766;
+  font-size: 14px;
   line-height: 1.5;
 }
 
-.profileCard:nth-child(2) .matchBox p {
+.profilePanel:nth-child(2) .matchStrip p,
+.profilePanel:nth-child(2) .nextAction p {
   color: rgba(255, 248, 232, 0.78);
 }
 
-.profileCard dl {
+.answerSection {
+  grid-column: 2;
+}
+
+.answerSection h3 {
+  margin: 0 0 16px;
+  font-family: var(--font-dm-serif-display), serif;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.answerSection dl {
   display: grid;
-  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 18px;
   margin: 0;
 }
 
-.profileCard dt {
-  color: #8a7d81;
-  font: 700 10px/1.2 var(--font-jetbrains-mono), monospace;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.profileCard:nth-child(2) dt {
-  color: #d7c06f;
-}
-
-.profileCard dd {
+.answerSection dd {
   margin: 4px 0 0;
   color: #2d2130;
+  font-size: 14px;
   line-height: 1.42;
+  overflow-wrap: anywhere;
 }
 
-.profileCard:nth-child(2) dd {
+.profilePanel:nth-child(2) .answerSection dd {
   color: rgba(255, 248, 232, 0.84);
 }
 
-.nextAction,
-.settlementBox {
-  margin-top: 24px;
-  padding: 16px;
-  background: rgba(37, 23, 45, 0.08);
+.nextAction {
+  grid-column: 2;
 }
 
-.profileCard:nth-child(2) .nextAction,
-.profileCard:nth-child(2) .settlementBox {
-  background: rgba(255, 248, 232, 0.08);
-}
-
-.nextAction span,
-.settlementBox span {
-  display: block;
-  color: #7b5b21;
-  font: 700 10px/1.2 var(--font-jetbrains-mono), monospace;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.settlementBox strong {
-  display: block;
-  margin-top: 8px;
-  line-height: 1.35;
-}
-
-.nextAction p,
-.settlementBox p {
-  margin: 8px 0 0;
-  line-height: 1.5;
-}
-
-.backendNote {
-  margin-top: clamp(48px, 8vw, 90px);
-  padding-top: 28px;
-  border-top: 1px solid rgba(61, 39, 70, 0.14);
-  display: grid;
-  grid-template-columns: 0.7fr 1fr;
-  gap: 24px;
-  align-items: start;
-}
-
-.backendNote p:not(.kicker) {
-  margin: 0;
-  color: #655766;
-  line-height: 1.6;
-}
-
-@media (max-width: 760px) {
+@media (max-width: 820px) {
   .page {
     background-attachment: scroll;
   }
@@ -244,12 +246,15 @@
     flex-direction: column;
   }
 
-  .profileGrid,
-  .backendNote {
+  .profilePanel,
+  .matchStrip,
+  .answerSection dl {
     grid-template-columns: 1fr;
   }
 
-  .profileCard:nth-child(2) {
-    margin-top: 0;
+  .matchStrip,
+  .answerSection,
+  .nextAction {
+    grid-column: auto;
   }
 }

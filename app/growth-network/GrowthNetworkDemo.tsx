@@ -286,7 +286,7 @@ export default function GrowthNetworkDemo() {
       <section className={styles.directory} aria-labelledby="directory-title">
         <div className={styles.sectionHeader}>
           <p className={styles.kicker}>Public Directory</p>
-          <h2 id="directory-title">Readable by humans, indexable by agents.</h2>
+          <h2 id="directory-title">Live listings for agents to inspect.</h2>
         </div>
         <div className={styles.tabs} role="tablist" aria-label="Growth network directory tabs">
           {[
@@ -323,23 +323,21 @@ export default function GrowthNetworkDemo() {
         )}
 
         {activeTab === 'projects' && (
-          <div className={styles.cardRail} id="projects">
+          <div className={styles.listPanel} id="projects">
             {projectDirectory.map((project, index) => (
-              <article className={styles.projectCard} key={project.name}>
-                <span className={styles.cardNumber}>{String(index + 1).padStart(2, '0')}</span>
-                <p className={styles.cardLabel}>{project.category}</p>
-                <h3>{project.name}</h3>
-                <a className={styles.cardLink} href={project.website}>{project.website}</a>
-                <p>{project.tagline}</p>
-                <dl>
+              <article className={styles.listRow} key={project.name}>
+                <div className={styles.rowIdentity}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
                   <div>
-                    <dt>Description</dt>
-                    <dd>{project.description}</dd>
+                    <p className={styles.cardLabel}>{project.category} · {project.stage}</p>
+                    <h3>{project.name}</h3>
+                    <a className={styles.cardLink} href={project.website}>{project.website}</a>
+                    <p>{project.tagline}</p>
                   </div>
-                  <div>
-                    <dt>Stage</dt>
-                    <dd>{project.stage}</dd>
-                  </div>
+                </div>
+                <div className={styles.rowMain}>
+                  <p>{project.description}</p>
+                  <dl>
                   <div>
                     <dt>Audience</dt>
                     <dd>{project.targetAudience}</dd>
@@ -360,7 +358,8 @@ export default function GrowthNetworkDemo() {
                     <dt>Channels wanted</dt>
                     <dd>{project.channelsWanted.join(', ')}</dd>
                   </div>
-                </dl>
+                  </dl>
+                </div>
                 <button type="button" onClick={() => setMatchVisible(true)}>
                   Ask agent to match
                 </button>
@@ -370,22 +369,24 @@ export default function GrowthNetworkDemo() {
         )}
 
         {activeTab === 'creators' && (
-          <div className={styles.cardRail} id="creators">
+          <div className={styles.listPanel} id="creators">
             {creatorDirectory.map((creator, index) => (
-              <article className={styles.creatorCard} key={creator.name}>
-                <span className={styles.cardNumber}>{String(index + 1).padStart(2, '0')}</span>
-                <p className={styles.cardLabel}>{creator.platform}</p>
-                <h3>{creator.name}</h3>
-                <p>{creator.specialty}</p>
-                <dl>
+              <article className={styles.listRow} key={creator.name}>
+                <div className={styles.rowIdentity}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
                   <div>
-                    <dt>Specialty</dt>
-                    <dd>{creator.specialty}</dd>
+                    <p className={styles.cardLabel}>{creator.platform} · quality {creator.qualityScore}/100</p>
+                    <h3>{creator.name}</h3>
+                    <p>{creator.specialty}</p>
+                    <div className={styles.channelLinks}>
+                      {creator.socialLinks.map((link) => (
+                        <a href={link.url} key={link.label}>{link.label}</a>
+                      ))}
+                    </div>
                   </div>
-                  <div>
-                    <dt>Major channels</dt>
-                    <dd>{creator.socialLinks.map((link) => `${link.label}: ${link.url}`).join(' · ')}</dd>
-                  </div>
+                </div>
+                <div className={styles.rowMain}>
+                  <dl>
                   <div>
                     <dt>Audience</dt>
                     <dd>{creator.audience}</dd>
@@ -422,7 +423,8 @@ export default function GrowthNetworkDemo() {
                     <dt>Quality</dt>
                     <dd>{creator.qualityScore}/100 · {creator.qualitySignals.join(', ')}</dd>
                   </div>
-                </dl>
+                  </dl>
+                </div>
                 <button type="button" onClick={() => setMatchVisible(true)}>
                   Match with project
                 </button>

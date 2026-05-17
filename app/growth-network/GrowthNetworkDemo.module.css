@@ -182,8 +182,7 @@
 .primaryCta,
 .secondaryCta,
 .promptPanel button,
-.projectCard button,
-.creatorCard button,
+.listRow button,
 .tabs button {
   min-height: 44px;
   border: 0;
@@ -318,8 +317,6 @@
 }
 
 .promptPanel h3,
-.projectCard h3,
-.creatorCard h3,
 .matchResult h3,
 .agentBrief h3 {
   margin: 0;
@@ -332,9 +329,7 @@
   font-size: 28px;
 }
 
-.promptPanel button,
-.projectCard button,
-.creatorCard button {
+.promptPanel button {
   padding: 0 15px;
   background: #2b1935;
   color: #fff8e8;
@@ -601,36 +596,36 @@
   text-decoration: none;
 }
 
-.cardRail {
+.listPanel {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  gap: 10px;
 }
 
-.projectCard,
-.creatorCard {
-  position: relative;
-  padding: 22px 18px 18px;
-  border-top: 1px solid rgba(61, 39, 70, 0.18);
-  background: rgba(255, 255, 255, 0.34);
-  min-height: 520px;
-  display: flex;
-  flex-direction: column;
+.listRow {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.65fr) minmax(360px, 1fr) 160px;
+  gap: 18px;
+  align-items: stretch;
+  padding: 18px;
+  border-top: 1px solid rgba(61, 39, 70, 0.16);
+  background: rgba(255, 255, 255, 0.46);
 }
 
-.projectCard:nth-child(even),
-.creatorCard:nth-child(odd) {
-  margin-top: 34px;
-  background: rgba(255, 255, 255, 0.54);
+.listRow:nth-child(even) {
+  background: rgba(255, 255, 255, 0.72);
 }
 
-.cardNumber {
-  position: absolute;
-  right: 14px;
-  top: 14px;
+.rowIdentity {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 12px;
+}
+
+.rowIdentity > span {
+  color: rgba(69, 39, 92, 0.24);
   font-family: var(--font-dm-serif-display), serif;
-  font-size: 44px;
-  color: rgba(69, 39, 92, 0.16);
+  font-size: 46px;
+  line-height: 0.9;
 }
 
 .cardLabel {
@@ -638,43 +633,43 @@
   margin-bottom: 14px;
 }
 
-.projectCard h3,
-.creatorCard h3 {
-  font-size: 31px;
-  line-height: 1;
-  margin-bottom: 12px;
-  padding-right: 36px;
+.listRow h3 {
+  margin: 6px 0 8px;
+  font-family: var(--font-dm-serif-display), serif;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: 0;
 }
 
-.projectCard > p,
-.creatorCard > p {
-  margin: 0 0 18px;
+.rowIdentity p,
+.rowMain p {
+  margin: 0;
   color: #5e5260;
   font-size: 14px;
   line-height: 1.5;
 }
 
-.projectCard dl,
-.creatorCard dl {
+.rowMain {
   display: grid;
-  gap: 12px;
-  margin: 0 0 18px;
+  gap: 14px;
 }
 
-.projectCard dl {
-  grid-template-columns: 1fr;
+.rowMain dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 18px;
+  margin: 0;
 }
 
-.projectCard dt,
-.creatorCard dt {
+.rowMain dt {
   color: #8a7d81;
   font: 700 10px/1.2 var(--font-jetbrains-mono), monospace;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.projectCard dd,
-.creatorCard dd {
+.rowMain dd {
   margin: 3px 0 0;
   color: #2d2130;
   font-size: 13px;
@@ -682,10 +677,26 @@
   overflow-wrap: anywhere;
 }
 
-.projectCard button,
-.creatorCard button {
-  margin-top: auto;
+.listRow button {
+  align-self: center;
   width: 100%;
+  padding: 0 15px;
+  background: #2b1935;
+  color: #fff8e8;
+}
+
+.channelLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.channelLinks a {
+  color: #44245c;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
 }
 
 .matchSection {
@@ -851,8 +862,8 @@
     max-width: 520px;
   }
 
-  .cardRail {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .listRow {
+    grid-template-columns: 1fr;
   }
 
   .matchIntro {
@@ -929,19 +940,12 @@
     margin-top: 16px;
   }
 
-  .cardRail,
   .fitGrid {
     grid-template-columns: 1fr;
   }
 
-  .projectCard:nth-child(even),
-  .creatorCard:nth-child(odd) {
-    margin-top: 0;
-  }
-
-  .projectCard,
-  .creatorCard {
-    min-height: auto;
+  .rowMain dl {
+    grid-template-columns: 1fr;
   }
 
   .matchHeader {
