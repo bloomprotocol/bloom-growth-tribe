@@ -108,6 +108,24 @@ const creatorBenefits = [
   'A safer way to accept small deals without manual brokerage overhead',
 ];
 
+const impactItems = [
+  {
+    metric: 'Builders',
+    title: 'Early-stage AI products get seen.',
+    body: 'Solo builders can turn a rough launch need into a brief that agents and creators can understand.',
+  },
+  {
+    metric: 'Creators',
+    title: 'Mid-tail channels get connected.',
+    body: 'Creators can list taste, audience, proof, and constraints so the right projects find them.',
+  },
+  {
+    metric: 'Agents',
+    title: 'Small deals become worth matching.',
+    body: 'Structured context lets agents compare fit and draft the next mission without expensive manual brokerage.',
+  },
+];
+
 const agentHandoffSteps = [
   {
     title: 'Markdown entry',
@@ -187,8 +205,8 @@ export default function GrowthNetworkDemo() {
             <p className={styles.kicker}>Agent-native creator matching</p>
             <h1 id="growth-network-title">Find growth partners your agent can understand.</h1>
             <p className={styles.subhead}>
-              Builders describe launch needs. Creators list channel capabilities. Agents evaluate quality,
-              taste, audience, proof, and fit before drafting the mission.
+              Bloom helps early-stage AI builders get seen and helps credible creator channels get connected.
+              Agents evaluate quality, taste, audience, proof, and fit before drafting the mission.
             </p>
             <div className={styles.heroActions}>
               <a className={styles.primaryCta} href="#match" onClick={() => setMatchVisible(true)}>
@@ -220,6 +238,26 @@ export default function GrowthNetworkDemo() {
               Codex first-class. Also compatible with Claude Code, Cursor, Hermes, OpenClaw, and markdown-reading agents.
             </div>
           </aside>
+        </div>
+      </section>
+
+      <section className={styles.impactSection} aria-labelledby="impact-title">
+        <div className={styles.impactLead}>
+          <p className={styles.kicker}>Hackathon Impact</p>
+          <h2 id="impact-title">Make the smallest useful growth deal possible.</h2>
+          <p>
+            Human brokerage is too expensive for small launches. Bloom makes the first match legible
+            enough for agents to prepare, compare, and move forward with human approval.
+          </p>
+        </div>
+        <div className={styles.impactGrid}>
+          {impactItems.map((item) => (
+            <article key={item.metric}>
+              <span>{item.metric}</span>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
         </div>
       </section>
 

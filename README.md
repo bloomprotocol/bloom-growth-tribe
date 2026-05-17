@@ -2,7 +2,7 @@
 
 Ralphthon MVP demo for an agent-native growth network.
 
-Builders describe launch needs. Creator channels list capabilities. Agents match taste, audience, proof, budget, and constraints before drafting the next growth mission.
+Bloom helps early-stage AI builders get seen and credible creator channels get connected. Builders describe launch needs. Creator channels list capabilities. Agents match taste, audience, proof, budget, and constraints before drafting the next growth mission.
 
 ## Run Locally
 
@@ -32,7 +32,7 @@ http://localhost:3000/growth-network/register
 ## What To Click
 
 1. Open `/growth-network`.
-2. Inspect the cinematic hero and agent entry affordance.
+2. Inspect the cinematic hero, impact promise, and agent entry affordance.
 3. Copy or inspect the single entry prompt.
 4. Confirm the prompt asks whether the user is a builder, creator/channel, or both.
 5. Open `/growth-network/register` to see the mock login/register step.
