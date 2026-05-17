@@ -1,16 +1,20 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
+import Link from 'next/link';
 import styles from './GrowthNetworkDemo.module.css';
 import { creatorDirectory, projectDirectory } from './data';
 
 type TabId = 'entry' | 'projects' | 'creators';
 
-const builderPrompt = `You are Codex acting as a builder-side agent for Bloom Growth Tribe.
+const entryPrompt = `You are Codex acting as the entry agent for Bloom Growth Tribe.
 
-Goal: prepare a public-safe creator/channel match request for a small launch.
+Goal: help the user join an agent-native growth network as either a builder or a creator/channel.
 
-Collect or confirm:
+First ask exactly one routing question:
+"Are you joining as a builder, a creator/channel, or both?"
+
+If the user is a builder, collect or confirm:
 - project name
 - website
 - project category
@@ -27,7 +31,7 @@ Collect or confirm:
 - tone preference: technical, founder-story, meme-native, educational, product-led
 - audience trust preference: big reach, niche credibility, high-quality writing, community trust
 
-Respond in clean numbered steps only:
+Then respond in clean numbered steps only:
 
 Step 1: Check product context
 - Confirm project name, website, category, target audience, launch goal, approved claims, forbidden claims, and budget.
@@ -38,13 +42,9 @@ Step 2: Capture taste and channel preference
 
 Step 3: Prepare Bloom match request
 - Output a structured match request JSON.
-- Ask the builder for approval before sending or spending anything.`;
+- Ask the builder for approval before sending or spending anything.
 
-const creatorPrompt = `You are Codex acting as a creator/channel-side agent for Bloom Growth Tribe.
-
-Goal: prepare a public-safe creator capability card so Bloom can match suitable small projects.
-
-Collect or confirm:
+If the user is a creator/channel, collect or confirm:
 - creator/channel name
 - platform: X, TikTok, newsletter, blog, community, or other
 - handle / URL
@@ -60,7 +60,7 @@ Collect or confirm:
 - deal preference: paid only, lower price for high-potential products, bundle deal, rev-share optional
 - proof they can provide: URL, screenshot, timestamp, post ID, archive link
 
-Respond in clean numbered steps only:
+Then respond in clean numbered steps only:
 
 Step 1: Check channel context
 - Confirm channel name, platform, handle/URL, follower stats, reach/engagement, and audience.
@@ -70,7 +70,21 @@ Step 2: Package offerings and preferences
 
 Step 3: Register capability card
 - Output a structured creator capability JSON.
-- Ask the creator for approval before listing or accepting any deal.`;
+- Ask the creator for approval before listing or accepting any deal.
+
+If the user is both, complete the builder steps first, then the creator steps. Never list, send, spend, accept, or publish without explicit approval.`;
+
+const builderBenefits = [
+  'A structured launch brief your agent can reuse',
+  'Creator matches based on taste, proof, audience, and constraints',
+  'A suggested collaboration package and first outreach message',
+];
+
+const creatorBenefits = [
+  'A capability card that describes the channel clearly',
+  'Projects filtered by category, taste, proof rules, and deal preference',
+  'A safer way to accept small deals without manual brokerage overhead',
+];
 
 const mockMatch = {
   creator: 'DevRel Fieldnotes',
@@ -104,11 +118,6 @@ export default function GrowthNetworkDemo() {
   const [activeTab, setActiveTab] = useState<TabId>('entry');
   const [matchVisible, setMatchVisible] = useState(false);
 
-  const activePrompt = useMemo(
-    () => (activeTab === 'creators' ? creatorPrompt : builderPrompt),
-    [activeTab],
-  );
-
   return (
     <main className={styles.page}>
       <section className={styles.hero} aria-labelledby="growth-network-title">
@@ -139,9 +148,12 @@ export default function GrowthNetworkDemo() {
               <a className={styles.primaryCta} href="#match" onClick={() => setMatchVisible(true)}>
                 Run agent match
               </a>
-              <button className={styles.secondaryCta} type="button" onClick={() => copyText(activePrompt)}>
+              <button className={styles.secondaryCta} type="button" onClick={() => copyText(entryPrompt)}>
                 Copy entry prompt
               </button>
+              <Link className={styles.secondaryLink} href="/growth-network/profile">
+                View profile
+              </Link>
             </div>
           </div>
 
@@ -165,12 +177,28 @@ export default function GrowthNetworkDemo() {
       <section className={styles.entrySection} id="agent-entry" aria-labelledby="agent-entry-title">
         <div className={styles.sectionHeader}>
           <p className={styles.kicker}>Agent Entry</p>
-          <h2 id="agent-entry-title">Two prompts, one public-safe loop.</h2>
-          <p>Paste this into Codex or your agent.</p>
+          <h2 id="agent-entry-title">One entry point. Your agent routes the rest.</h2>
+          <p>Paste the markdown into Codex or your agent. It asks whether you are a builder, a creator/channel, or both.</p>
         </div>
-        <div className={styles.promptGrid}>
-          <PromptPanel title="Join as builder" prompt={builderPrompt} />
-          <PromptPanel title="Join as creator/channel" prompt={creatorPrompt} />
+        <PromptPanel title="Bloom Growth Tribe entry prompt" prompt={entryPrompt} />
+      </section>
+
+      <section className={styles.benefitsSection} aria-labelledby="benefits-title">
+        <div className={styles.sectionHeader}>
+          <p className={styles.kicker}>Why Join</p>
+          <h2 id="benefits-title">Builders get clarity. Creators get fit.</h2>
+        </div>
+        <div className={styles.benefitGrid}>
+          <article>
+            <p className={styles.cardLabel}>For builders</p>
+            <h3>Turn a launch need into a matchable brief.</h3>
+            <ul>{builderBenefits.map((item) => <li key={item}>{item}</li>)}</ul>
+          </article>
+          <article>
+            <p className={styles.cardLabel}>For creators</p>
+            <h3>Make your channel legible to matching agents.</h3>
+            <ul>{creatorBenefits.map((item) => <li key={item}>{item}</li>)}</ul>
+          </article>
         </div>
       </section>
 
@@ -203,8 +231,8 @@ export default function GrowthNetworkDemo() {
             <div>
               <h3>Agent-readable entry point</h3>
               <p>
-                The markdown starter includes runnable prompts for both sides of the network. It works
-                anywhere an agent can read markdown and return numbered steps.
+                The markdown starter routes the user first, then asks the right questions for builders,
+                creators, or both. It works anywhere an agent can read markdown and return numbered steps.
               </p>
             </div>
             <a className={styles.textLink} href="/paste-blocks/growth-network-entry.md">
@@ -341,6 +369,17 @@ export default function GrowthNetworkDemo() {
             <p>Click Run agent match to reveal the structured recommendation a judge should inspect.</p>
           </div>
         )}
+      </section>
+
+      <section className={styles.profileTeaser} aria-labelledby="profile-title">
+        <div>
+          <p className={styles.kicker}>Profile Preview</p>
+          <h2 id="profile-title">Both sides can review what the agent collected.</h2>
+          <p>For the MVP this is a public-safe mock profile. A real version would save approved answers through a small API and database table.</p>
+        </div>
+        <Link className={styles.primaryCta} href="/growth-network/profile">
+          Open profile
+        </Link>
       </section>
     </main>
   );

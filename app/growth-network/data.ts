@@ -100,3 +100,34 @@ export const creatorDirectory: CreatorCard[] = [
     sampleWork: 'https://example.com/the-small-room/sample',
   },
 ];
+
+export const demoProfiles = {
+  builder: {
+    role: 'Builder',
+    displayName: 'Signal Garden',
+    publicSummary: 'AI visibility tool helping small teams turn launch docs into agent-readable briefs.',
+    website: 'https://example.com/signal-garden',
+    category: 'AI visibility',
+    launchGoal: 'Explain how small teams can make docs easier for agents to parse.',
+    audience: ['B2B SaaS founders', 'DevRel leads', 'AI tooling teams'],
+    tastePreferences: ['educational', 'operator credibility', 'high-quality writing'],
+    constraints: ['No guaranteed revenue claims', 'No ranking guarantees', 'Public-safe examples only'],
+    budgetOrPrice: '$500-$900 launch budget',
+    proofRules: ['Public URL', 'Timestamp', 'Analytics screenshot if available'],
+    nextAgentAction: 'Approve match request JSON before sending or spending anything.',
+  },
+  creator: {
+    role: 'Creator/channel',
+    displayName: 'DevRel Fieldnotes',
+    publicSummary: 'Technical blog and community channel for founders and DevRel operators.',
+    website: 'https://example.com/devrel-fieldnotes',
+    category: 'Blog + community',
+    launchGoal: 'Review technical founder tools and practical agent-readable workflows.',
+    audience: ['Technical founders', 'DevRel operators', 'Developer-tool builders'],
+    tastePreferences: ['technical clarity', 'proof-first claims', 'developer utility'],
+    constraints: ['No financial promises', 'No health claims', 'No low-context AI wrappers'],
+    budgetOrPrice: '$500-$900 starting range',
+    proofRules: ['Permalink', 'Community screenshot', 'Timestamp'],
+    nextAgentAction: 'Approve capability card before listing or accepting any deal.',
+  },
+};

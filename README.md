@@ -17,15 +17,23 @@ Demo route:
 http://localhost:3000/growth-network
 ```
 
+Profile preview:
+
+```text
+http://localhost:3000/growth-network/profile
+```
+
 ## What To Click
 
 1. Open `/growth-network`.
 2. Inspect the cinematic hero and agent entry affordance.
-3. Copy or inspect `Join as builder`.
-4. Copy or inspect `Join as creator/channel`.
-5. Open `Projects` and `Creators` tabs.
-6. Click `Run agent match`.
-7. Read the fit score, taste fit, hidden gem signal, suggested mission draft, proof checklist, and next agent messages.
+3. Copy or inspect the single entry prompt.
+4. Confirm the prompt asks whether the user is a builder, creator/channel, or both.
+5. Read what builders get and what creators get.
+6. Open `Projects` and `Creators` tabs.
+7. Click `Run agent match`.
+8. Open `/growth-network/profile` to see public-safe builder and creator profile answers.
+9. Read the fit score, taste fit, hidden gem signal, suggested mission draft, proof checklist, and next agent messages.
 
 ## Agent Entry Markdown
 
@@ -34,6 +42,8 @@ The starter prompt lives at:
 ```text
 public/paste-blocks/growth-network-entry.md
 ```
+
+It is one entry point. The agent first asks whether the user is joining as a builder, creator/channel, or both, then asks the relevant questions.
 
 It is designed to be pasted into Codex, Claude Code, Cursor, Hermes, OpenClaw, or any agent that can read markdown. OpenClaw is compatible but not required.
 
@@ -44,6 +54,7 @@ It is designed to be pasted into Codex, Claude Code, Cursor, Hermes, OpenClaw, o
 - Match result
 - Fit score and proof checklist
 - Suggested collaboration mission
+- Profile page data
 
 No external APIs, payments, private data, or backend are required.
 
