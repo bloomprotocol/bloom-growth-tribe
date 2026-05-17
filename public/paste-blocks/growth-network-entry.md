@@ -61,6 +61,7 @@ If the user is a creator/channel, collect or confirm:
 - examples of products they would promote even at a lower price
 - deal preference: paid only, lower price for high-potential products, bundle deal, rev-share optional
 - proof they can provide: URL, screenshot, timestamp, post ID, archive link
+- quality signals they can provide: sample work URL, proof completeness, audience trust, content quality, constraint fit, reliability signal
 
 Then respond in clean numbered steps only:
 
@@ -72,6 +73,7 @@ Step 2: Package offerings and preferences
 
 Step 3: Register capability card
 - Output a structured creator capability JSON.
+- Include creator quality signals for proof completeness, audience trust, content quality, constraint fit, and reliability.
 - Ask the creator for approval before listing or accepting any deal.
 
 If the user is both, complete the builder steps first, then the creator steps. Never list, send, spend, accept, or publish without explicit approval.
@@ -115,6 +117,13 @@ If the user is both, complete the builder steps first, then the creator steps. N
   "preferred_project_categories": ["developer tools", "AI visibility", "technical founder workflows"],
   "blocked_project_categories": ["financial promises", "health claims", "low-context AI wrappers"],
   "taste_preferences": ["technical clarity", "proof-first claims", "developer utility"],
+  "quality_signals": {
+    "proof_completeness": "Permalink, community screenshot, and timestamp available",
+    "audience_trust": "Technical founders and DevRel operators already read the channel",
+    "content_quality": "Sample work shows precise technical writing",
+    "constraint_fit": "Avoids financial promises and unsupported claims",
+    "reliability_signal": "Can confirm format, timeline, and proof delivery before launch"
+  },
   "deal_preference": "lower price for high-potential products",
   "proof_available": ["permalink", "community screenshot", "timestamp"]
 }
@@ -128,6 +137,8 @@ After the user approves, the agent can show a public-safe profile summary:
 {
   "profile_type": "builder_or_creator",
   "display_name": "Signal Garden or DevRel Fieldnotes",
+  "role": "builder_or_creator",
+  "matched_with": "Creator/channel or builder/project name",
   "approved_public_summary": "Short public description",
   "matching_inputs": {
     "audience": [],

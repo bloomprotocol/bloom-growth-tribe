@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import styles from './GrowthNetworkDemo.module.css';
-import { creatorDirectory, projectDirectory } from './data';
+import { creatorDirectory, creatorQualityRubric, projectDirectory } from './data';
 
 type TabId = 'entry' | 'projects' | 'creators';
 
@@ -141,8 +141,8 @@ export default function GrowthNetworkDemo() {
             <p className={styles.kicker}>Agent-native creator matching</p>
             <h1 id="growth-network-title">Find growth partners your agent can understand.</h1>
             <p className={styles.subhead}>
-              Builders describe launch needs. Creators list channel capabilities. Agents match taste,
-              audience, proof, and fit.
+              Builders describe launch needs. Creators list channel capabilities. Agents evaluate quality,
+              taste, audience, proof, and fit before drafting the mission.
             </p>
             <div className={styles.heroActions}>
               <a className={styles.primaryCta} href="#match" onClick={() => setMatchVisible(true)}>
@@ -199,6 +199,26 @@ export default function GrowthNetworkDemo() {
             <h3>Make your channel legible to matching agents.</h3>
             <ul>{creatorBenefits.map((item) => <li key={item}>{item}</li>)}</ul>
           </article>
+        </div>
+      </section>
+
+      <section className={styles.qualitySection} aria-labelledby="quality-title">
+        <div className={styles.sectionHeader}>
+          <p className={styles.kicker}>Creator Quality Layer</p>
+          <h2 id="quality-title">Bloom checks fit before it checks reach.</h2>
+          <p>
+            The agent looks for public proof, audience trust, content taste, and claim discipline.
+            A smaller channel can win when the quality signals are stronger.
+          </p>
+        </div>
+        <div className={styles.qualityGrid}>
+          {creatorQualityRubric.map((item, index) => (
+            <article key={item.label}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.label}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -303,6 +323,10 @@ export default function GrowthNetworkDemo() {
                   <div>
                     <dt>Sample</dt>
                     <dd>{creator.sampleWork}</dd>
+                  </div>
+                  <div>
+                    <dt>Quality</dt>
+                    <dd>{creator.qualityScore}/100 · {creator.qualitySignals.join(', ')}</dd>
                   </div>
                 </dl>
                 <button type="button" onClick={() => setMatchVisible(true)}>

@@ -30,10 +30,11 @@ http://localhost:3000/growth-network/profile
 3. Copy or inspect the single entry prompt.
 4. Confirm the prompt asks whether the user is a builder, creator/channel, or both.
 5. Read what builders get and what creators get.
-6. Open `Projects` and `Creators` tabs.
-7. Click `Run agent match`.
-8. Open `/growth-network/profile` to see public-safe builder and creator profile answers.
-9. Read the fit score, taste fit, hidden gem signal, suggested mission draft, proof checklist, and next agent messages.
+6. Inspect the creator quality layer: proof completeness, audience trust, content quality, constraint fit, and reliability.
+7. Open `Projects` and `Creators` tabs.
+8. Click `Run agent match`.
+9. Open `/growth-network/profile` to see each side's role, answers, and current match.
+10. Read the fit score, taste fit, hidden gem signal, suggested mission draft, proof checklist, and next agent messages.
 
 ## Agent Entry Markdown
 
@@ -55,6 +56,7 @@ It is designed to be pasted into Codex, Claude Code, Cursor, Hermes, OpenClaw, o
 - Fit score and proof checklist
 - Suggested collaboration mission
 - Profile page data
+- Creator quality scoring signals
 
 No external APIs, payments, private data, or backend are required.
 

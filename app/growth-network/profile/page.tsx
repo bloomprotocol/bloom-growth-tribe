@@ -24,7 +24,7 @@ export default function GrowthNetworkProfilePage() {
 
       <header className={styles.header}>
         <p className={styles.kicker}>Profile Preview</p>
-        <h1>Answers your agent collected, ready for review.</h1>
+        <h1>Your role, your answers, and your current match.</h1>
         <p>
           In the MVP this page uses public-safe mock data. A production version would save approved
           builder and creator answers through a small backend before listing or matching.
@@ -54,9 +54,14 @@ export default function GrowthNetworkProfilePage() {
 function ProfileCard({ profile }: { profile: DemoProfile }) {
   return (
     <article className={styles.profileCard}>
-      <p className={styles.kicker}>{profile.role}</p>
+      <p className={styles.kicker}>Your role: {profile.role}</p>
       <h2>{profile.displayName}</h2>
       <p className={styles.summary}>{profile.publicSummary}</p>
+      <div className={styles.matchBox}>
+        <span>{profile.matchRoleLabel}</span>
+        <strong>{profile.matchedWith}</strong>
+        <p>{profile.matchReason}</p>
+      </div>
       <dl>
         <div>
           <dt>Website</dt>

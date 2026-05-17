@@ -17,7 +17,32 @@ export type CreatorCard = {
   startingRange: string;
   tastePreferences: string[];
   sampleWork: string;
+  qualityScore: number;
+  qualitySignals: string[];
 };
+
+export const creatorQualityRubric = [
+  {
+    label: 'Proof completeness',
+    description: 'Can the creator provide URLs, screenshots, timestamps, post IDs, or archive links?',
+  },
+  {
+    label: 'Audience trust',
+    description: 'Does the channel have niche credibility with the builder’s actual audience?',
+  },
+  {
+    label: 'Content quality',
+    description: 'Does the creator’s sample work match the tone, taste, and claim discipline needed?',
+  },
+  {
+    label: 'Constraint fit',
+    description: 'Will they respect forbidden claims, blocked categories, community rules, and proof rules?',
+  },
+  {
+    label: 'Reliability signal',
+    description: 'Can they confirm format, timeline, proof delivery, and approval flow before launch?',
+  },
+];
 
 export const projectDirectory: ProjectBrief[] = [
   {
@@ -68,6 +93,8 @@ export const creatorDirectory: CreatorCard[] = [
     startingRange: '$650',
     tastePreferences: ['calm tools', 'honest founder stories', 'high-quality writing'],
     sampleWork: 'https://example.com/mira-notes/sample',
+    qualityScore: 88,
+    qualitySignals: ['Strong archive proof', 'High writing quality', 'Calm founder-tool taste'],
   },
   {
     name: 'Tiny Demos Club',
@@ -78,6 +105,8 @@ export const creatorDirectory: CreatorCard[] = [
     startingRange: '$450',
     tastePreferences: ['product-led', 'visual workflows', 'launch-day energy'],
     sampleWork: 'https://example.com/tiny-demos/sample',
+    qualityScore: 83,
+    qualitySignals: ['Fast demo format', 'Strong reach for small launches', 'Needs claim guardrails'],
   },
   {
     name: 'DevRel Fieldnotes',
@@ -88,6 +117,8 @@ export const creatorDirectory: CreatorCard[] = [
     startingRange: '$500',
     tastePreferences: ['technical clarity', 'proof-first claims', 'developer utility'],
     sampleWork: 'https://example.com/devrel-fieldnotes/sample',
+    qualityScore: 94,
+    qualitySignals: ['Best proof discipline', 'Strong audience trust', 'Technical tone match'],
   },
   {
     name: 'The Small Room',
@@ -98,6 +129,8 @@ export const creatorDirectory: CreatorCard[] = [
     startingRange: '$300',
     tastePreferences: ['community trust', 'quiet launches', 'tasteful constraints'],
     sampleWork: 'https://example.com/the-small-room/sample',
+    qualityScore: 86,
+    qualitySignals: ['Niche community fit', 'Soft launch style', 'Moderator approval required'],
   },
 ];
 
@@ -114,6 +147,9 @@ export const demoProfiles = {
     constraints: ['No guaranteed revenue claims', 'No ranking guarantees', 'Public-safe examples only'],
     budgetOrPrice: '$500-$900 launch budget',
     proofRules: ['Public URL', 'Timestamp', 'Analytics screenshot if available'],
+    matchedWith: 'DevRel Fieldnotes',
+    matchRoleLabel: 'Matched creator/channel',
+    matchReason: 'Technical trust, proof discipline, and educational style fit Signal Garden’s launch need.',
     nextAgentAction: 'Approve match request JSON before sending or spending anything.',
   },
   creator: {
@@ -128,6 +164,9 @@ export const demoProfiles = {
     constraints: ['No financial promises', 'No health claims', 'No low-context AI wrappers'],
     budgetOrPrice: '$500-$900 starting range',
     proofRules: ['Permalink', 'Community screenshot', 'Timestamp'],
+    matchedWith: 'Signal Garden',
+    matchRoleLabel: 'Matched builder/project',
+    matchReason: 'AI visibility category, proof-first claims, and DevRel audience fit the channel.',
     nextAgentAction: 'Approve capability card before listing or accepting any deal.',
   },
 };

@@ -114,6 +114,49 @@
   color: rgba(255, 248, 232, 0.8);
 }
 
+.matchBox {
+  margin: 0 0 24px;
+  padding: 16px;
+  background: rgba(37, 23, 45, 0.08);
+  border-top: 1px solid rgba(61, 39, 70, 0.14);
+}
+
+.profileCard:nth-child(2) .matchBox {
+  background: rgba(255, 248, 232, 0.08);
+  border-color: rgba(255, 248, 232, 0.16);
+}
+
+.matchBox span {
+  display: block;
+  color: #7b5b21;
+  font: 700 10px/1.2 var(--font-jetbrains-mono), monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.profileCard:nth-child(2) .matchBox span {
+  color: #d7c06f;
+}
+
+.matchBox strong {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-dm-serif-display), serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.matchBox p {
+  margin: 8px 0 0;
+  color: #655766;
+  line-height: 1.5;
+}
+
+.profileCard:nth-child(2) .matchBox p {
+  color: rgba(255, 248, 232, 0.78);
+}
+
 .profileCard dl {
   display: grid;
   gap: 14px;
