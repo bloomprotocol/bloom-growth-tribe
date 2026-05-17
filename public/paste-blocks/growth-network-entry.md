@@ -16,6 +16,9 @@ Goal: help the user join an agent-native growth network as either a builder or a
 First ask exactly one routing question:
 "Are you joining as a builder, a creator/channel, or both?"
 
+After the user approves the collected answers, create or update an agent dashboard profile. In this demo, the dashboard route is:
+`/growth-network/profile`
+
 If the user is a builder, collect or confirm:
 - project name
 - website
@@ -47,6 +50,7 @@ Step 3: Prepare Bloom match request
 - Output a structured match request JSON.
 - Include whether the builder permits Bloom MCP matching tools after approval.
 - Include preferred settlement rail and whether a Privy wallet/x402/MPP packet is allowed.
+- Output a `dashboard_profile` JSON object that can populate the agent dashboard after login/register.
 - Ask the builder for approval before sending or spending anything.
 - Include settlement preference, but remind the builder that final settlement is human-approved.
 
@@ -80,6 +84,7 @@ Step 3: Register capability card
 - Output a structured creator capability JSON.
 - Include creator quality signals for proof completeness, audience trust, content quality, constraint fit, and reliability.
 - Include settlement capability and approval constraints.
+- Output a `dashboard_profile` JSON object that can populate the agent dashboard after login/register.
 - Ask the creator for approval before listing or accepting any deal.
 - Do not register a wallet, accept funds, or release funds without explicit human approval.
 
@@ -201,6 +206,37 @@ After the user approves, the agent can show a public-safe profile summary:
     "proof_rules": []
   },
   "approval_required_before_listing": true
+}
+```
+
+## Dashboard Creation Output
+
+When the user approves onboarding, return this dashboard object so the app can render `/growth-network/profile` after login/register:
+
+```json
+{
+  "dashboard_route": "/growth-network/profile",
+  "profile_status": "ready_for_match_approval",
+  "identity": {
+    "display_name": "Signal Garden",
+    "role": "builder",
+    "website": "https://example.com/signal-garden",
+    "public_summary": "AI visibility tool helping small teams turn launch docs into agent-readable briefs."
+  },
+  "stats": {
+    "fit_score": 92,
+    "proof_ready": "5/5",
+    "budget_or_price": "$500-$900",
+    "status": "approval_required"
+  },
+  "current_match": {
+    "matched_with": "DevRel Fieldnotes",
+    "match_role": "creator/channel",
+    "mission_status": "mission_draft_ready",
+    "proof_status": "checklist_attached"
+  },
+  "protocol_layer": "Markdown entry + Bloom MCP now; A2A agent card later.",
+  "wallet_policy": "Privy wallet, x402, or MPP only after explicit human approval."
 }
 ```
 

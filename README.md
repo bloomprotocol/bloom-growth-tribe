@@ -23,21 +23,29 @@ Profile preview:
 http://localhost:3000/growth-network/profile
 ```
 
+Mock register/login:
+
+```text
+http://localhost:3000/growth-network/register
+```
+
 ## What To Click
 
 1. Open `/growth-network`.
 2. Inspect the cinematic hero and agent entry affordance.
 3. Copy or inspect the single entry prompt.
 4. Confirm the prompt asks whether the user is a builder, creator/channel, or both.
-5. Read what builders get and what creators get.
-6. Inspect the creator quality layer: proof completeness, audience trust, content quality, constraint fit, and reliability.
-7. Read the agent handoff layer: markdown entry, Bloom MCP tools, structured profile card, and A2A future path.
-8. Open `Projects` and confirm project name, website, description, stage, audience, budget, proof, and channels wanted.
-9. Open `Creators` and confirm creator name, major social channels, specialty, audience stats, cadence, offers, proof, price, and quality signals.
-10. Click `Run agent match`.
-11. Inspect settlement: quality gate, human approval, Privy policy wallet lane, x402/MPP rail option, and reputation update.
-12. Open `/growth-network/profile` to see each side's role, answers, current match, protocol layer, wallet policy, and settlement status.
-13. Read the fit score, taste fit, hidden gem signal, suggested mission draft, proof checklist, protocol path, settlement packet, and next agent messages.
+5. Open `/growth-network/register` to see the mock login/register step.
+6. Confirm the register screen explains that approved agent answers create the dashboard.
+7. Read what builders get and what creators get.
+8. Inspect the creator quality layer: proof completeness, audience trust, content quality, constraint fit, and reliability.
+9. Read the agent handoff layer: markdown entry, Bloom MCP tools, structured profile card, and A2A future path.
+10. Open `Projects` and confirm project name, website, description, stage, audience, budget, proof, and channels wanted.
+11. Open `Creators` and confirm creator name, major social channels, specialty, audience stats, cadence, offers, proof, price, and quality signals.
+12. Click `Run agent match`.
+13. Inspect settlement: quality gate, human approval, Privy policy wallet lane, x402/MPP rail option, and reputation update.
+14. Open `/growth-network/profile` to see the generated dashboard: role, answers, current match, protocol layer, wallet policy, and settlement status.
+15. Read the fit score, taste fit, hidden gem signal, suggested mission draft, proof checklist, protocol path, settlement packet, and next agent messages.
 
 ## Agent Entry Markdown
 
@@ -48,6 +56,7 @@ public/paste-blocks/growth-network-entry.md
 ```
 
 It is one entry point. The agent first asks whether the user is joining as a builder, creator/channel, or both, then asks the relevant questions.
+After approval, it returns a dashboard profile object for `/growth-network/profile`.
 
 It is designed to be pasted into Codex, Claude Code, Cursor, Hermes, OpenClaw, or any agent that can read markdown. OpenClaw is compatible but not required.
 
@@ -59,6 +68,8 @@ It is designed to be pasted into Codex, Claude Code, Cursor, Hermes, OpenClaw, o
 - Fit score and proof checklist
 - Suggested collaboration mission
 - Profile page data
+- Register/login page
+- Generated agent dashboard
 - Creator quality scoring signals
 - Agent handoff explanation
 - Bloom MCP tool surface

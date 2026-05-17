@@ -178,6 +178,7 @@ export default function GrowthNetworkDemo() {
             <a href="#projects">Projects</a>
             <a href="#creators">Creators</a>
             <a href="#match">Match</a>
+            <Link href="/growth-network/register">Register</Link>
           </div>
         </nav>
 
@@ -196,8 +197,11 @@ export default function GrowthNetworkDemo() {
               <button className={styles.secondaryCta} type="button" onClick={() => copyText(entryPrompt)}>
                 Copy entry prompt
               </button>
+              <Link className={styles.secondaryLink} href="/growth-network/register">
+                Register / login
+              </Link>
               <Link className={styles.secondaryLink} href="/growth-network/profile">
-                View profile
+                View dashboard
               </Link>
             </div>
           </div>
@@ -563,13 +567,18 @@ export default function GrowthNetworkDemo() {
 
       <section className={styles.profileTeaser} aria-labelledby="profile-title">
         <div>
-          <p className={styles.kicker}>Profile Preview</p>
-          <h2 id="profile-title">Both sides can review what the agent collected.</h2>
-          <p>For the MVP this is a public-safe mock profile. A real version would save approved answers through a small API and database table.</p>
+          <p className={styles.kicker}>Generated Dashboard</p>
+          <h2 id="profile-title">Registration turns approved answers into an agent dashboard.</h2>
+          <p>For the MVP this is public-safe mock auth. A real version would save approved answers and generate the same dashboard after login.</p>
         </div>
-        <Link className={styles.primaryCta} href="/growth-network/profile">
-          Open profile
-        </Link>
+        <div className={styles.teaserActions}>
+          <Link className={styles.secondaryDark} href="/growth-network/register">
+            Register / login
+          </Link>
+          <Link className={styles.primaryCta} href="/growth-network/profile">
+            Open dashboard
+          </Link>
+        </div>
       </section>
     </main>
   );

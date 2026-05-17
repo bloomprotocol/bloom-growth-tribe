@@ -220,6 +220,20 @@
   font-weight: 800;
 }
 
+.secondaryDark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: rgba(37, 23, 45, 0.08);
+  color: #25172d;
+  font-size: 14px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
 .entryConsole {
   border: 1px solid rgba(255, 255, 255, 0.32);
   background: rgba(255, 248, 232, 0.18);
@@ -798,6 +812,13 @@
   border-top: 1px solid rgba(61, 39, 70, 0.14);
 }
 
+.teaserActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
 .profileTeaser > div {
   max-width: 720px;
   padding-top: 34px;
@@ -1013,6 +1034,10 @@
 
   .profileTeaser .primaryCta {
     margin-top: 18px;
+  }
+
+  .teaserActions {
+    justify-content: flex-start;
   }
 
   .agentBrief {
