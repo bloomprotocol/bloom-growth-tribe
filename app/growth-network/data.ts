@@ -32,6 +32,10 @@ export type CreatorCard = {
 
 export const creatorQualityRubric = [
   {
+    label: 'Credential check',
+    description: 'Can the agent verify the channel identity, public links, sample work, claimed audience, and contact surface?',
+  },
+  {
     label: 'Proof completeness',
     description: 'Can the creator provide URLs, screenshots, timestamps, post IDs, or archive links?',
   },
@@ -55,74 +59,74 @@ export const creatorQualityRubric = [
 
 export const settlementFlow = [
   {
-    label: 'Quality gate',
-    description: 'The agent checks proof completeness, audience trust, content quality, constraints, and reliability before a deal is eligible.',
+    label: 'Check quality',
+    description: 'Verify identity, proof, audience trust, content quality, and reliability before a deal is eligible.',
   },
   {
-    label: 'Human approval',
-    description: 'Builder and creator review the package, claims, price, proof checklist, and publish timing before anything is sent or paid.',
+    label: 'Approve terms',
+    description: 'Builder and creator approve claims, price, proof checklist, and publish timing.',
   },
   {
-    label: 'Policy wallet lane',
-    description: 'For a live demo, Bloom can prepare a Privy wallet action with caps, approved recipients, and an explicit human approve button.',
+    label: 'Prepare payment',
+    description: 'Bloom can prepare a capped Privy wallet, x402, MPP, or invoice packet for approval.',
   },
   {
-    label: 'Reputation update',
-    description: 'After proof is delivered, Bloom can update quality signals so future matches prefer reliable creators.',
+    label: 'Update reputation',
+    description: 'Delivered proof improves future quality signals for reliable creators.',
   },
 ];
 
 export const walletGuidance = {
-  mvp: 'Wallets are optional execution rails, not the core matching thesis.',
+  mvp: 'Wallets are optional rails, not the core matching product.',
   future:
-    'The public-safe demo can show a Privy agentic wallet packet plus x402 or MPP settlement rail, with capped amount, approved recipient, proof checklist, and explicit human authorization.',
+    'For the hackathon, Bloom can show a Privy wallet packet plus x402 or MPP rail with capped amount, approved recipient, proof checklist, and human authorization.',
 };
 
 export const mcpTools = [
   {
-    name: 'list_projects',
-    description: 'Returns public project cards with website, category, launch need, audience, budget, and proof rules.',
+    name: 'List projects',
+    description: 'Reads builder briefs from the public directory.',
   },
   {
-    name: 'list_creators',
-    description: 'Returns creator capability cards with channels, formats, proof, quality signals, taste, and price range.',
+    name: 'List creators',
+    description: 'Reads creator cards, channels, proof, taste, and price.',
   },
   {
-    name: 'score_match',
-    description: 'Compares one builder brief against creator cards across audience, taste, proof, quality, budget, and constraints.',
+    name: 'Score match',
+    description: 'Compares audience, taste, proof, quality, budget, and constraints.',
   },
   {
-    name: 'create_match_packet',
-    description: 'Drafts the suggested collaboration package, mission, proof checklist, and next message for each agent.',
+    name: 'Create packet',
+    description: 'Drafts the mission, checklist, and next message for both sides.',
   },
   {
-    name: 'prepare_settlement_packet',
-    description: 'Prepares a human-approved settlement packet for manual invoice, Privy wallet, x402, or MPP rails.',
+    name: 'Prepare payment',
+    description: 'Prepares a human-approved payment packet when both sides accept.',
   },
 ];
 
 export const protocolLayers = [
   {
     label: 'Markdown + HTML',
-    status: 'Live MVP',
-    description: 'Any Codex-style agent can read the entry prompt and inspect public listings without installing anything.',
+    status: 'Now',
+    description: 'Any Codex-style agent can read the prompt and listings.',
   },
   {
     label: 'Bloom MCP',
-    status: 'Hackathon demo layer',
-    description: 'Agents use Bloom tools to list projects, list creators, score fit, create match packets, and prepare settlement packets.',
+    status: 'Agent tools',
+    description: 'Agents can list, score, and create match packets.',
   },
   {
     label: 'A2A',
-    status: 'Network upgrade',
-    description: 'Builder and creator agents publish agent cards, then negotiate availability, claims, proof, and mission updates directly.',
+    status: 'Later',
+    description: 'Live agents can publish cards and negotiate directly.',
   },
 ];
 
 export const settlementPacket = {
-  rail: 'Privy policy wallet + x402 or MPP rail',
-  amount: '0.01 USDC proof-of-settlement demo, not full creator payout',
-  recipient: 'Matched creator/channel wallet alias: DevRel Fieldnotes',
+  rail: 'Privy wallet + x402 or MPP',
+  amount: '0.01 USDC proof payment for demo',
+  recipient: 'Recipient: DevRel Fieldnotes',
   policy: [
     'Human approval required',
     'Capped demo amount',

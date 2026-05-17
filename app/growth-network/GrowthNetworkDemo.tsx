@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import styles from './GrowthNetworkDemo.module.css';
 import {
@@ -128,20 +129,24 @@ const impactItems = [
 
 const agentHandoffSteps = [
   {
-    title: 'Markdown entry',
-    body: 'The user gives their agent the Bloom markdown. The agent asks whether they are a builder, creator/channel, or both.',
+    eyebrow: 'Step 1',
+    title: 'Paste the entry prompt',
+    body: 'Codex or any agent asks if you are a builder, creator, or both.',
   },
   {
-    title: 'Bloom MCP',
-    body: 'The agent can call list_projects, list_creators, score_match, create_match_packet, and prepare_settlement_packet.',
+    eyebrow: 'Step 2',
+    title: 'Create a profile',
+    body: 'Answers become a builder brief or creator capability card.',
   },
   {
-    title: 'Profile card',
-    body: 'The agent turns answers into a builder brief or creator capability card with approval gates.',
+    eyebrow: 'Step 3',
+    title: 'Score the fit',
+    body: 'Bloom compares audience, taste, proof, budget, and quality.',
   },
   {
-    title: 'A2A later',
-    body: 'When builders and creators run live agents, A2A agent cards can let them negotiate availability, proof, and mission updates.',
+    eyebrow: 'Step 4',
+    title: 'Draft the mission',
+    body: 'Both sides get the match packet, next message, and proof checklist.',
   },
 ];
 
@@ -167,9 +172,9 @@ const mockMatch = {
   creatorNext:
     'Approve the capability card, confirm format and price, and share one sample technical note with proof.',
   protocolPath:
-    'MVP: markdown and public HTML. Demo layer: Bloom MCP tool calls. Future: A2A agent cards for live builder and creator agents.',
+    'This demo shows the match on the web page. The same match packet can also be returned inside the builder agent or creator agent reply.',
   settlement:
-    'Prepare a human-approved settlement packet: Privy policy wallet, x402, or MPP rail; 0.01 USDC proof payment; capped recipient; no autonomous release.',
+    'After both sides approve, Bloom prepares a human-approved proof payment packet. No autonomous payout is triggered in the demo.',
 };
 
 function copyText(text: string) {
@@ -177,9 +182,37 @@ function copyText(text: string) {
   void navigator.clipboard.writeText(text);
 }
 
+function scrollToSection(id: string) {
+  window.requestAnimationFrame(() => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
 export default function GrowthNetworkDemo() {
   const [activeTab, setActiveTab] = useState<TabId>('entry');
   const [matchVisible, setMatchVisible] = useState(false);
+
+  useEffect(() => {
+    const syncHash = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash === 'projects' || hash === 'creators') {
+        setActiveTab(hash);
+        scrollToSection('directory');
+      }
+      if (hash === 'match') {
+        setMatchVisible(true);
+      }
+    };
+
+    syncHash();
+    window.addEventListener('hashchange', syncHash);
+    return () => window.removeEventListener('hashchange', syncHash);
+  }, []);
+
+  function openDirectoryTab(tab: TabId) {
+    setActiveTab(tab);
+    scrollToSection(tab === 'entry' ? 'agent-entry' : 'directory');
+  }
 
   return (
     <main className={styles.page}>
@@ -188,14 +221,16 @@ export default function GrowthNetworkDemo() {
         <div className={styles.heroVeil} />
         <nav className={styles.nav} aria-label="Growth network navigation">
           <a className={styles.brand} href="#top" aria-label="Bloom Growth Tribe home">
-            <span className={styles.brandMark}>B</span>
+            <span className={styles.brandMark}>
+              <Image src="/growth-network/logo_mark.png" alt="" width={34} height={34} priority />
+            </span>
             <span>Bloom Growth Tribe</span>
           </a>
           <div className={styles.navLinks}>
             <a href="#agent-entry">Agent Entry</a>
-            <a href="#projects">Projects</a>
-            <a href="#creators">Creators</a>
-            <a href="#match">Match</a>
+            <a href="#projects" onClick={() => openDirectoryTab('projects')}>Projects</a>
+            <a href="#creators" onClick={() => openDirectoryTab('creators')}>Creators</a>
+            <a href="#match" onClick={() => setMatchVisible(true)}>Match</a>
             <Link href="/growth-network/register">Register</Link>
           </div>
         </nav>
@@ -205,9 +240,8 @@ export default function GrowthNetworkDemo() {
             <p className={styles.kicker}>Growth access for early AI builders</p>
             <h1 id="growth-network-title">Help early AI builders get their first real growth signal.</h1>
             <p className={styles.subhead}>
-              Bloom connects early-stage AI products with credible creator channels. Agents turn launch
-              briefs and channel profiles into quality-scored matches, mission drafts, and human-approved
-              next steps.
+              Bloom helps early-stage AI builders get seen and helps credible creator channels get connected.
+              Agents evaluate quality, taste, audience, proof, and fit before matching.
             </p>
             <div className={styles.heroActions}>
               <a className={styles.primaryCta} href="#match" onClick={() => setMatchVisible(true)}>
@@ -295,7 +329,7 @@ export default function GrowthNetworkDemo() {
           <p className={styles.kicker}>Creator Quality Layer</p>
           <h2 id="quality-title">Bloom checks fit before it checks reach.</h2>
           <p>
-            The agent looks for public proof, audience trust, content taste, and claim discipline.
+            The agent checks creator credentials, public proof, audience trust, content taste, and claim discipline.
             A smaller channel can win when the quality signals are stronger.
           </p>
         </div>
@@ -312,17 +346,16 @@ export default function GrowthNetworkDemo() {
 
       <section className={styles.handoffSection} aria-labelledby="handoff-title">
         <div className={styles.sectionHeader}>
-          <p className={styles.kicker}>Agent Handoff</p>
-          <h2 id="handoff-title">MCP makes matching credible now. A2A makes agents find agents later.</h2>
+          <p className={styles.kicker}>How Matching Works</p>
+          <h2 id="handoff-title">From prompt to growth mission.</h2>
           <p>
-            The MVP stays runnable through markdown and public HTML. Bloom MCP is the hackathon tool layer
-            an agent can call to inspect listings, score fit, and prepare packets. A2A is the future layer
-            for live builder and creator agents to talk to each other.
+            Builders and creators answer once. Agents package the context, score the fit, and draft the next move.
           </p>
         </div>
         <div className={styles.handoffGrid}>
           {agentHandoffSteps.map((step) => (
             <article key={step.title}>
+              <span>{step.eyebrow}</span>
               <h3>{step.title}</h3>
               <p>{step.body}</p>
             </article>
@@ -339,8 +372,8 @@ export default function GrowthNetworkDemo() {
         </div>
         <div className={styles.mcpConsole} aria-label="Bloom MCP tool surface">
           <div>
-            <p className={styles.kicker}>Bloom MCP Tool Surface</p>
-            <h3>Tools an agent can call</h3>
+            <p className={styles.kicker}>Agent Tools</p>
+            <h3>How scoring runs</h3>
           </div>
           <dl>
             {mcpTools.map((tool) => (
@@ -356,10 +389,10 @@ export default function GrowthNetworkDemo() {
       <section className={styles.settlementSection} aria-labelledby="settlement-title">
         <div className={styles.sectionHeader}>
           <p className={styles.kicker}>Settlement Layer</p>
-          <h2 id="settlement-title">Quality decides eligibility. Humans approve settlement.</h2>
+          <h2 id="settlement-title">Pay only after quality and proof are approved.</h2>
           <p>
-            Agents prepare the deal packet, proof checklist, and settlement packet. For the hackathon,
-            Bloom can show a Privy policy wallet plus x402 or MPP rail, but release stays human-approved.
+            Agents prepare the deal, proof checklist, and payment packet. Humans approve the creator,
+            claims, price, proof, and release.
           </p>
         </div>
         <div className={styles.settlementGrid}>
@@ -376,7 +409,7 @@ export default function GrowthNetworkDemo() {
         </div>
         <div className={styles.settlementPacket}>
           <div>
-            <p className={styles.kicker}>Prepared Settlement Packet</p>
+            <p className={styles.kicker}>Demo Packet</p>
             <h3>{settlementPacket.rail}</h3>
             <p>{settlementPacket.amount}</p>
             <p>{settlementPacket.recipient}</p>
@@ -392,7 +425,7 @@ export default function GrowthNetworkDemo() {
         </div>
       </section>
 
-      <section className={styles.directory} aria-labelledby="directory-title">
+      <section className={styles.directory} id="directory" aria-labelledby="directory-title">
         <div className={styles.sectionHeader}>
           <p className={styles.kicker}>Public Directory</p>
           <h2 id="directory-title">Live listings for agents to inspect.</h2>
@@ -547,10 +580,18 @@ export default function GrowthNetworkDemo() {
         <div className={styles.matchIntro}>
           <p className={styles.kicker}>Agent Match Result</p>
           <h2 id="match-title">Bloom matches more than reach.</h2>
-          <p>Taste, audience, proof, constraints, and founder/creator preference shape the recommendation.</p>
+          <p>
+            This button runs the demo match on the page. In a real agent flow, the same packet appears in the
+            builder or creator agent reply and is saved to the profile.
+          </p>
           <button type="button" className={styles.primaryCta} onClick={() => setMatchVisible(true)}>
             Run agent match
           </button>
+          <div className={styles.matchProcess} aria-label="Match process">
+            <span>1. Read profile cards</span>
+            <span>2. Score fit and quality</span>
+            <span>3. Draft mission packet</span>
+          </div>
         </div>
 
         {matchVisible ? (
@@ -591,7 +632,7 @@ export default function GrowthNetworkDemo() {
               <h4>Next messages</h4>
               <p><strong>Builder agent:</strong> {mockMatch.builderNext}</p>
               <p><strong>Creator agent:</strong> {mockMatch.creatorNext}</p>
-              <h4>Protocol path</h4>
+              <h4>Where this result appears</h4>
               <p>{mockMatch.protocolPath}</p>
               <h4>Settlement packet</h4>
               <p>{mockMatch.settlement}</p>
@@ -599,7 +640,7 @@ export default function GrowthNetworkDemo() {
           </article>
         ) : (
           <div className={styles.matchPlaceholder}>
-            <p>Click Run agent match to reveal the structured recommendation a judge should inspect.</p>
+            <p>Click Run agent match to show the recommendation packet: score, reasons, risks, mission draft, proof checklist, and next messages.</p>
           </div>
         )}
       </section>

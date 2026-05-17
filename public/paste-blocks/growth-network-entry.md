@@ -4,7 +4,7 @@ Bloom Growth Tribe is an agent-native growth network for solo builders, small pr
 
 This markdown is safe to paste into Codex, Claude Code, Cursor, Hermes, OpenClaw, or any agent that can read markdown prompts. OpenClaw is compatible, but not required.
 
-Use mock or public-safe context only. Do not include secrets, payment details, private strategy notes, competitor analysis, BD target lists, internal pricing strategy, or private founder reasoning.
+Use mock or public-safe context only. Do not include secrets, payment details, private strategy notes, private market analysis, BD target lists, internal pricing strategy, or private founder reasoning.
 
 ## One Entry Prompt
 
@@ -146,7 +146,7 @@ These are the mock tools the demo exposes as the credible agent-native layer. Th
   "launch_goal": "Explain how small teams can make docs easier for agents to parse.",
   "target_audience": ["B2B SaaS founders", "DevRel leads", "AI tooling teams"],
   "approved_claims": ["Turns launch docs into clearer agent-readable briefs", "Uses public-safe context only"],
-  "forbidden_claims": ["Guaranteed revenue", "Guaranteed rankings", "Private competitor comparisons"],
+  "forbidden_claims": ["Guaranteed revenue", "Guaranteed rankings", "Private market comparisons"],
   "preferred_channels": ["newsletter", "blog", "technical community"],
   "budget_range": "$500-$900",
   "proof_required": ["public URL", "timestamp", "analytics screenshot if available"],
