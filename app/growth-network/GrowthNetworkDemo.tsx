@@ -203,11 +203,11 @@ export default function GrowthNetworkDemo() {
         <div className={styles.heroContent} id="top">
           <div className={styles.heroCopy}>
             <p className={styles.kicker}>Growth access for early AI builders</p>
-            <h1 id="growth-network-title">Find growth partners your agent can understand.</h1>
+            <h1 id="growth-network-title">Help early AI builders get their first real growth signal.</h1>
             <p className={styles.subhead}>
-              Bloom helps early-stage AI builders get seen and credible creator channels get connected.
-              Agents turn launch briefs and channel profiles into quality-scored matches, mission drafts,
-              and human-approved next steps.
+              Bloom connects early-stage AI products with credible creator channels. Agents turn launch
+              briefs and channel profiles into quality-scored matches, mission drafts, and human-approved
+              next steps.
             </p>
             <div className={styles.heroActions}>
               <a className={styles.primaryCta} href="#match" onClick={() => setMatchVisible(true)}>
