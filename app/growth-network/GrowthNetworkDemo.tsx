@@ -111,18 +111,18 @@ const creatorBenefits = [
 const impactItems = [
   {
     metric: 'Builders',
-    title: 'Early-stage AI products get seen.',
-    body: 'Solo builders can turn a rough launch need into a brief that agents and creators can understand.',
+    title: 'Get seen before brokerage makes sense.',
+    body: 'Early-stage AI builders turn a rough launch need into a brief that credible creator channels can evaluate.',
   },
   {
     metric: 'Creators',
-    title: 'Mid-tail channels get connected.',
-    body: 'Creators can list taste, audience, proof, and constraints so the right projects find them.',
+    title: 'Get connected to projects that fit.',
+    body: 'Creators list taste, audience, proof, and constraints so agents bring better-fit launches instead of cold noise.',
   },
   {
     metric: 'Agents',
-    title: 'Small deals become worth matching.',
-    body: 'Structured context lets agents compare fit and draft the next mission without expensive manual brokerage.',
+    title: 'Make small deals operational.',
+    body: 'Structured context lets agents compare fit, draft the mission, and prepare the next step without expensive manual brokerage.',
   },
 ];
 
@@ -202,11 +202,12 @@ export default function GrowthNetworkDemo() {
 
         <div className={styles.heroContent} id="top">
           <div className={styles.heroCopy}>
-            <p className={styles.kicker}>Agent-native creator matching</p>
+            <p className={styles.kicker}>Growth access for early AI builders</p>
             <h1 id="growth-network-title">Find growth partners your agent can understand.</h1>
             <p className={styles.subhead}>
-              Bloom helps early-stage AI builders get seen and helps credible creator channels get connected.
-              Agents evaluate quality, taste, audience, proof, and fit before drafting the mission.
+              Bloom helps early-stage AI builders get seen and credible creator channels get connected.
+              Agents turn launch briefs and channel profiles into quality-scored matches, mission drafts,
+              and human-approved next steps.
             </p>
             <div className={styles.heroActions}>
               <a className={styles.primaryCta} href="#match" onClick={() => setMatchVisible(true)}>
@@ -244,10 +245,10 @@ export default function GrowthNetworkDemo() {
       <section className={styles.impactSection} aria-labelledby="impact-title">
         <div className={styles.impactLead}>
           <p className={styles.kicker}>Hackathon Impact</p>
-          <h2 id="impact-title">Make the smallest useful growth deal possible.</h2>
+          <h2 id="impact-title">Give small AI launches a real distribution path.</h2>
           <p>
-            Human brokerage is too expensive for small launches. Bloom makes the first match legible
-            enough for agents to prepare, compare, and move forward with human approval.
+            Manual brokerage is too expensive for small creator deals. Bloom makes the first match
+            legible enough for agents to compare, prepare, and move forward with human approval.
           </p>
         </div>
         <div className={styles.impactGrid}>

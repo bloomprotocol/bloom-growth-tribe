@@ -17,7 +17,7 @@
 .heroImage {
   position: absolute;
   inset: 0;
-  z-index: -3;
+  z-index: 0;
   background: url('/growth-network/ralphthon-hero.png') center / cover no-repeat;
   filter: saturate(1.02) contrast(1.01);
 }
@@ -25,13 +25,15 @@
 .heroVeil {
   position: absolute;
   inset: 0;
-  z-index: -2;
+  z-index: 1;
   background:
-    linear-gradient(90deg, rgba(24, 16, 30, 0.58), rgba(24, 16, 30, 0.18) 42%, rgba(24, 16, 30, 0.04) 72%),
-    linear-gradient(180deg, rgba(32, 20, 38, 0.18), rgba(32, 20, 38, 0.03) 50%, rgba(245, 241, 232, 0.86) 100%);
+    linear-gradient(90deg, rgba(24, 16, 30, 0.58), rgba(24, 16, 30, 0.16) 42%, rgba(24, 16, 30, 0) 72%),
+    linear-gradient(180deg, rgba(32, 20, 38, 0.1), rgba(32, 20, 38, 0) 52%, rgba(245, 241, 232, 0.58) 100%);
 }
 
 .nav {
+  position: relative;
+  z-index: 2;
   width: min(1120px, calc(100% - 32px));
   margin: 22px auto 0;
   min-height: 58px;
@@ -93,6 +95,8 @@
 }
 
 .heroContent {
+  position: relative;
+  z-index: 2;
   width: min(1120px, calc(100% - 32px));
   margin: auto auto 0;
   padding: clamp(4rem, 9vw, 8rem) 0 clamp(4rem, 9vw, 7rem);
