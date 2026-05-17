@@ -31,10 +31,12 @@ http://localhost:3000/growth-network/profile
 4. Confirm the prompt asks whether the user is a builder, creator/channel, or both.
 5. Read what builders get and what creators get.
 6. Inspect the creator quality layer: proof completeness, audience trust, content quality, constraint fit, and reliability.
-7. Open `Projects` and `Creators` tabs.
-8. Click `Run agent match`.
-9. Open `/growth-network/profile` to see each side's role, answers, and current match.
-10. Read the fit score, taste fit, hidden gem signal, suggested mission draft, proof checklist, and next agent messages.
+7. Read the agent handoff layer: markdown entry, structured profile card, public directory, match handoff.
+8. Open `Projects` and confirm project name, website, description, stage, audience, budget, proof, and channels wanted.
+9. Open `Creators` and confirm creator name, major social channels, specialty, audience stats, cadence, offers, proof, price, and quality signals.
+10. Click `Run agent match`.
+11. Open `/growth-network/profile` to see each side's role, answers, and current match.
+12. Read the fit score, taste fit, hidden gem signal, suggested mission draft, proof checklist, and next agent messages.
 
 ## Agent Entry Markdown
 
@@ -57,6 +59,7 @@ It is designed to be pasted into Codex, Claude Code, Cursor, Hermes, OpenClaw, o
 - Suggested collaboration mission
 - Profile page data
 - Creator quality scoring signals
+- Agent handoff explanation
 
 No external APIs, payments, private data, or backend are required.
 

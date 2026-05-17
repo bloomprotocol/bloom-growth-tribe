@@ -86,6 +86,25 @@ const creatorBenefits = [
   'A safer way to accept small deals without manual brokerage overhead',
 ];
 
+const agentHandoffSteps = [
+  {
+    title: 'Public entry prompt',
+    body: 'The user gives their agent the Bloom markdown. The agent asks whether they are a builder, creator/channel, or both.',
+  },
+  {
+    title: 'Structured profile card',
+    body: 'The agent turns answers into a builder brief or creator capability card with approval gates.',
+  },
+  {
+    title: 'Agent-readable directory',
+    body: 'Bloom exposes public-safe project and creator cards in HTML plus JSON-LD, so any agent can inspect them.',
+  },
+  {
+    title: 'Match handoff',
+    body: 'The agent compares fit, quality, taste, proof, and constraints, then drafts the next message. No MCP is required for the MVP.',
+  },
+];
+
 const mockMatch = {
   creator: 'DevRel Fieldnotes',
   project: 'Signal Garden',
@@ -222,6 +241,25 @@ export default function GrowthNetworkDemo() {
         </div>
       </section>
 
+      <section className={styles.handoffSection} aria-labelledby="handoff-title">
+        <div className={styles.sectionHeader}>
+          <p className={styles.kicker}>Agent Handoff</p>
+          <h2 id="handoff-title">How one agent finds the other side.</h2>
+          <p>
+            The MVP uses a markdown prompt, public directory pages, profile cards, and mock match JSON.
+            Bloom MCP is a future upgrade, not a dependency for this demo.
+          </p>
+        </div>
+        <div className={styles.handoffGrid}>
+          {agentHandoffSteps.map((step) => (
+            <article key={step.title}>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className={styles.directory} aria-labelledby="directory-title">
         <div className={styles.sectionHeader}>
           <p className={styles.kicker}>Public Directory</p>
@@ -268,8 +306,17 @@ export default function GrowthNetworkDemo() {
                 <span className={styles.cardNumber}>{String(index + 1).padStart(2, '0')}</span>
                 <p className={styles.cardLabel}>{project.category}</p>
                 <h3>{project.name}</h3>
-                <p>{project.launchNeed}</p>
+                <a className={styles.cardLink} href={project.website}>{project.website}</a>
+                <p>{project.tagline}</p>
                 <dl>
+                  <div>
+                    <dt>Description</dt>
+                    <dd>{project.description}</dd>
+                  </div>
+                  <div>
+                    <dt>Stage</dt>
+                    <dd>{project.stage}</dd>
+                  </div>
                   <div>
                     <dt>Audience</dt>
                     <dd>{project.targetAudience}</dd>
@@ -285,6 +332,10 @@ export default function GrowthNetworkDemo() {
                   <div>
                     <dt>Proof</dt>
                     <dd>{project.proofRequired}</dd>
+                  </div>
+                  <div>
+                    <dt>Channels wanted</dt>
+                    <dd>{project.channelsWanted.join(', ')}</dd>
                   </div>
                 </dl>
                 <button type="button" onClick={() => setMatchVisible(true)}>
@@ -302,8 +353,28 @@ export default function GrowthNetworkDemo() {
                 <span className={styles.cardNumber}>{String(index + 1).padStart(2, '0')}</span>
                 <p className={styles.cardLabel}>{creator.platform}</p>
                 <h3>{creator.name}</h3>
-                <p>{creator.audience}</p>
+                <p>{creator.specialty}</p>
                 <dl>
+                  <div>
+                    <dt>Specialty</dt>
+                    <dd>{creator.specialty}</dd>
+                  </div>
+                  <div>
+                    <dt>Major channels</dt>
+                    <dd>{creator.socialLinks.map((link) => `${link.label}: ${link.url}`).join(' · ')}</dd>
+                  </div>
+                  <div>
+                    <dt>Audience</dt>
+                    <dd>{creator.audience}</dd>
+                  </div>
+                  <div>
+                    <dt>Stats</dt>
+                    <dd>{creator.audienceStats}</dd>
+                  </div>
+                  <div>
+                    <dt>Cadence</dt>
+                    <dd>{creator.cadence}</dd>
+                  </div>
                   <div>
                     <dt>Formats</dt>
                     <dd>{creator.acceptedFormats.join(', ')}</dd>

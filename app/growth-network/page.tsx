@@ -21,7 +21,8 @@ const projectJsonLd = {
     item: {
       '@type': 'CreativeWork',
       name: project.name,
-      description: `${project.category}. ${project.launchNeed}`,
+      url: project.website,
+      description: `${project.tagline} ${project.description}`,
       audience: project.targetAudience,
       keywords: project.preferredStyle.join(', '),
     },
@@ -38,8 +39,9 @@ const creatorJsonLd = {
     item: {
       '@type': 'Person',
       name: creator.name,
-      description: `${creator.platform} channel for ${creator.audience}`,
-      url: creator.sampleWork,
+      description: `${creator.specialty}. ${creator.platform} channel for ${creator.audience}`,
+      url: creator.socialLinks[0]?.url ?? creator.sampleWork,
+      sameAs: creator.socialLinks.map((link) => link.url),
       knowsAbout: creator.tastePreferences.join(', '),
     },
   })),
