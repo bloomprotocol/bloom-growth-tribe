@@ -191,7 +191,6 @@ export default function GrowthNetworkDemo() {
       const hash = window.location.hash.replace('#', '');
       if (hash === 'projects' || hash === 'creators') {
         setActiveTab(hash);
-        scrollToSection('directory');
       }
       if (hash === 'match') {
         setMatchVisible(true);
@@ -202,6 +201,13 @@ export default function GrowthNetworkDemo() {
     window.addEventListener('hashchange', syncHash);
     return () => window.removeEventListener('hashchange', syncHash);
   }, []);
+
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash === 'projects' || hash === 'creators') {
+      scrollToSection('directory');
+    }
+  }, [activeTab]);
 
   function openDirectoryTab(tab: TabId) {
     setActiveTab(tab);
